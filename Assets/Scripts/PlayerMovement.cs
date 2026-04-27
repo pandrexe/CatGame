@@ -14,9 +14,10 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMovement;
     public bool isRunning;
     public bool isMoving;
+    public bool isGrounded;
 
     [Header("Jumping")]
-    public float jumpPower = 5f;
+    public float jumpPower = 7f;
 
 
     [Header("Ground Check")]
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         isRunning = false;
+        isGrounded = true;
         currentSpeed = walkSpeed;
         animator = GetComponent<Animator>();
     }
@@ -46,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         isMoving = Mathf.Abs(horizontalMovement) > 0;
         animator.SetBool("isRunning", isRunning && isMoving);
         Gravity();
+        isGrounded = IsGrounded();
+        animator.SetBool("isGrounded", isGrounded);
     }
 
     private void Gravity()
@@ -105,8 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 if (rb.linearVelocity.y > 0)
                 {
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-                    animator.SetTrigger("Jump");
-            }
+                }
             }
     }
 
