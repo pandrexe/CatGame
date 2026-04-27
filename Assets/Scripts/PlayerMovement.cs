@@ -3,57 +3,61 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public Rigidbody2D rb;
-    public Animator animator;
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private CatAudio catAudio;
 
     [Header("Movement")]
-    public float walkSpeed = 3f;
-    public float runSpeed = 5f;
-    public float currentSpeed;
-    float horizontalMovement;
-    public bool isRunning;
-    public bool isMoving;
-    public bool isGrounded;
+    [SerializeField] private float walkSpeed = 3f;
+    [SerializeField] private float runSpeed = 5f;
+
+    private float currentSpeed;
+    private float horizontalMovement;
+    private bool isRunning;
+    private bool isMoving;
+    private bool isGrounded;
 
     [Header("Jumping")]
-    public float jumpPower = 7f;
-
+    [SerializeField] private float jumpPower = 7f;
 
     [Header("Ground Check")]
-    public Transform groundCheckPosition;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    public LayerMask groundLayer;
+    [SerializeField] private Transform groundCheckPosition;
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    [SerializeField] private LayerMask groundLayer;
 
     [Header("Gravity")]
-    public float baseGravity = 1f;
-    public float fallMultiplier = 2f;
-    public float maxFallSpeed = 5f;
+    [SerializeField] private float baseGravity = 1f;
+    [SerializeField] private float fallMultiplier = 2f;
+    [SerializeField] private float maxFallSpeed = 5f;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isRunning = false;
-        isGrounded = true;
         currentSpeed = walkSpeed;
-        animator = GetComponent<Animator>();
+
+        if (animator == null) animator = GetComponent<Animator>();
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (catAudio == null) catAudio = GetComponent<CatAudio>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = new Vector2(horizontalMovement * currentSpeed, rb.linearVelocity.y);
-        animator.SetBool("isMoving", Mathf.Abs(horizontalMovement) > 0);
-        isMoving = Mathf.Abs(horizontalMovement) > 0;
-        animator.SetBool("isRunning", isRunning && isMoving);
-        Gravity();
         isGrounded = IsGrounded();
+        isMoving = Mathf.Abs(horizontalMovement) > 0;
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isRunning", isRunning && isMoving);
         animator.SetBool("isGrounded", isGrounded);
     }
 
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(horizontalMovement * currentSpeed, rb.linearVelocity.y);
+        Gravity();
+    }
+
     private void Gravity()
-        {
+    {
         if (rb.linearVelocity.y < 0)
         {
             animator.SetFloat("yVelocity", rb.linearVelocity.y);
@@ -67,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
     public void Move(InputAction.CallbackContext context)
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
@@ -77,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("lastInputX", horizontalMovement);
         }
-       
     }
 
     public void Run(InputAction.CallbackContext context)
@@ -86,31 +87,36 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = !isRunning;
         }
-        if (isRunning)
-        {
-            currentSpeed = runSpeed;
-        }
-        else
-        {
-            currentSpeed = walkSpeed;
-        }
-        
+
+        currentSpeed = isRunning ? runSpeed : walkSpeed;
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-            if (context.performed && IsGrounded())
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
-                animator.SetTrigger("Jump");
+        if (context.performed && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+            animator.SetTrigger("Jump");
         }
-            else if (context.canceled)
+        else if (context.canceled)
+        {
+            if (rb.linearVelocity.y > 0)
             {
-                if (rb.linearVelocity.y > 0)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-                }
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
             }
+        }
+    }
+
+    public void Meow(InputAction.CallbackContext context)
+    {
+        if (context.started && isGrounded)
+        {
+            animator.SetTrigger("Meow");
+            if (catAudio != null)
+            {
+                catAudio.PlayMeow();
+            }
+        }
     }
 
     private bool IsGrounded()
@@ -120,16 +126,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(groundCheckPosition.position, groundCheckSize);
-    }
-
-    public void Meow(InputAction.CallbackContext context)
-    {
-        if (context.started && IsGrounded())
+        if (groundCheckPosition != null)
         {
-            animator.SetTrigger("Meow");
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(groundCheckPosition.position, groundCheckSize);
         }
     }
-
 }
