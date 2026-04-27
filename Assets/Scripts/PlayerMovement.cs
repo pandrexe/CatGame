@@ -124,4 +124,12 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(groundCheckPosition.position, groundCheckSize);
     }
 
+    public void Meow(InputAction.CallbackContext context)
+    {
+        if (context.started && IsGrounded())
+        {
+            animator.SetTrigger("Meow");
+        }
+    }
+
 }
