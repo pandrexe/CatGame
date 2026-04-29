@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private CatAudio catAudio;
+    private Rigidbody2D currentPlatformRb;
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 3f;
@@ -52,7 +53,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontalMovement * currentSpeed, rb.linearVelocity.y);
+        float targetSpeedX = horizontalMovement * currentSpeed;
+
+        if (isGrounded && currentPlatformRb != null)
+        {
+            targetSpeedX += currentPlatformRb.linearVelocity.x;
+        }
+
+        rb.linearVelocity = new Vector2(targetSpeedX, rb.linearVelocity.y);
+
         Gravity();
     }
 
@@ -121,7 +130,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheckPosition.position, groundCheckSize, 0f, groundLayer);
+        Collider2D groundCollider = Physics2D.OverlapBox(groundCheckPosition.position, groundCheckSize, 0f, groundLayer);
+
+        if (groundCollider != null)
+        {
+            groundCollider.TryGetComponent(out currentPlatformRb);
+            return true;
+        }
+
+        currentPlatformRb = null;
+        return false;
     }
 
     public void OnDrawGizmosSelected()
