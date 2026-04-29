@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isRunning", isRunning && isMoving);
         animator.SetBool("isGrounded", isGrounded);
+        Fall();
     }
 
     private void FixedUpdate()
@@ -125,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && isGrounded && isOnPlatform && playerCollider.enabled)
         {
             StartCoroutine(DisablePlayerCollider(0.25f));
-            animator.SetTrigger("Drop");
         }
     }
 
@@ -184,6 +184,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(groundCheckPosition.position, groundCheckSize);
+        }
+    }
+
+    public void Fall()
+    {
+        if(rb.linearVelocity.y < 0 && !isGrounded)
+        {
+            animator.SetBool("isFalling", true);
+        }
+        else
+        {
+            animator.SetBool("isFalling", false);
         }
     }
 
