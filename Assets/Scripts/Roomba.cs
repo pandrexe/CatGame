@@ -3,21 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class RoombaEnemy : MonoBehaviour
 {
-
     public Transform target;
     public float speed = 2f;
-    public float jumpForce = 2f;
     public LayerMask groundLayer;
     public Animator animator;
 
     private Rigidbody2D rb;
     private bool isGrounded;
-    private bool shouldJump;
 
     private float moveTimer = 0f;
     private float randomDirection = 1f;
-
-
 
     private bool isCatOnTop = false;
 
@@ -29,16 +24,12 @@ public class RoombaEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
 
-        float verticalDifference = target.position.y - transform.position.y;
-
         if (isCatOnTop)
         {
-            // SE IL GATTO È SOPRA
             if (isGrounded)
             {
                 moveTimer -= Time.deltaTime;
@@ -58,55 +49,14 @@ public class RoombaEnemy : MonoBehaviour
                 }
 
                 rb.linearVelocity = new Vector2(randomDirection * (speed * 0.5f), rb.linearVelocity.y);
-                shouldJump = false;
             }
         }
         else
         {
-            // SE IL GATTO NON È SOPRA (Inseguimento normale)
             float direction = Mathf.Sign(target.position.x - transform.position.x);
             rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
-
-            if (isGrounded)
-            {
-                RaycastHit2D platformAbove = Physics2D.Raycast(transform.position, Vector2.up, 3f, groundLayer);
-                RaycastHit2D groundInFront = Physics2D.Raycast(transform.position, new Vector2(direction, 0), 2f, groundLayer);
-                RaycastHit2D gapAhead = Physics2D.Raycast(transform.position + new Vector3(direction, 0, 0), Vector2.down, 2f, groundLayer);
-
-                if (groundInFront.collider != null && gapAhead.collider == null)
-                {
-                    shouldJump = true;
-                }
-                else if (verticalDifference > 1.5f && platformAbove.collider != null)
-                {
-                    shouldJump = true;
-                }
-                else
-                {
-                    shouldJump = false;
-                }
-            }
-            else
-            {
-                shouldJump = false;
-            }
         }
-
-        animator.SetBool("isGrounded", isGrounded);
     }
-
-    private void FixedUpdate()
-        {
-            if (shouldJump && isGrounded)
-            {
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                animator.SetTrigger("Jump");
-                shouldJump = false;
-            }
-        }
-
-    
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -139,6 +89,4 @@ public class RoombaEnemy : MonoBehaviour
             }
         }
     }
-
-
 }

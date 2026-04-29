@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private CatAudio catAudio;
     private Rigidbody2D currentPlatformRb;
+    BoxCollider2D playerCollider;
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 3f;
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning;
     private bool isMoving;
     private bool isGrounded;
+    private bool isOnPlatform;
 
     [Header("Jumping")]
     [SerializeField] private float jumpPower = 7f;
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null) animator = GetComponent<Animator>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         if (catAudio == null) catAudio = GetComponent<CatAudio>();
+        if (playerCollider == null) playerCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -113,6 +117,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
             }
+        }
+    }
+
+    public void Drop(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded && isOnPlatform && playerCollider.enabled)
+        {
+            StartCoroutine(DisablePlayerCollider(0.25f));
+            animator.SetTrigger("Drop");
+        }
+    }
+
+    private IEnumerator DisablePlayerCollider(float duration)
+    {
+        playerCollider.enabled = false;
+        yield return new WaitForSeconds(duration);
+        playerCollider.enabled = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnPlatform = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            isOnPlatform = false;
         }
     }
 

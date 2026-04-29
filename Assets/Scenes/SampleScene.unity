@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 312802801}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,6 +774,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bee409d2-27e1-4fb1-a765-39d142fa8344
     m_ActionName: 'Player/Meow[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 312802794}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Drop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 99b83614-e53d-4124-a1ca-24b6dbef61d7
+    m_ActionName: 'Player/Drop[/Keyboard/s,/Keyboard/downArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1350,7 +1366,7 @@ GameObject:
   - component: {fileID: 498383576}
   m_Layer: 6
   m_Name: Platform (3)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1707,7 +1723,7 @@ GameObject:
   - component: {fileID: 565893668}
   m_Layer: 6
   m_Name: Platform (1)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2898,7 +2914,7 @@ Transform:
   m_GameObject: {fileID: 1199640455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.089, y: -2.122, z: 0}
+  m_LocalPosition: {x: 2.564, y: -2.131, z: 0}
   m_LocalScale: {x: 0.048883777, y: 0.048883777, z: 0.048883777}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3013,7 +3029,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoombaEnemy
   target: {fileID: 312802799}
   speed: 0.6
-  jumpForce: 0.64
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -3467,11 +3482,10 @@ GameObject:
   - component: {fileID: 1442639607}
   - component: {fileID: 1442639606}
   - component: {fileID: 1442639605}
-  - component: {fileID: 1442639610}
   - component: {fileID: 1442639609}
   - component: {fileID: 1442639608}
   m_Layer: 6
-  m_Name: Platform
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3592,7 +3606,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1812, y: -2.8, z: 0}
-  m_LocalScale: {x: 9.995431, y: 1, z: 1}
+  m_LocalScale: {x: 27.112608, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3628,7 +3642,7 @@ CompositeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
@@ -3669,25 +3683,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!251 &1442639610
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442639604}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
 --- !u!1 &1450155655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,7 +4108,7 @@ GameObject:
   - component: {fileID: 1910756710}
   m_Layer: 6
   m_Name: Platform (4)
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
