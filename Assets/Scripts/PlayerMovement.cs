@@ -150,4 +150,6 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawWireCube(groundCheckPosition.position, groundCheckSize);
         }
     }
+
+  
 }
