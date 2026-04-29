@@ -74,13 +74,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (rb.linearVelocity.y < 0)
         {
-            animator.SetFloat("yVelocity", rb.linearVelocity.y);
+            animator.SetBool("isFalling", true);
             rb.gravityScale = baseGravity * fallMultiplier;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -maxFallSpeed));
         }
         else
         {
-            animator.SetFloat("yVelocity", rb.linearVelocity.y);
+            animator.SetBool("isFalling", false);
             rb.gravityScale = baseGravity;
         }
     }
