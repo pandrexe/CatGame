@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
   pauseMenuCanvas: {fileID: 644589136}
+  tabsController: {fileID: 1557379460}
 --- !u!1 &228418824
 GameObject:
   m_ObjectHideFlags: 0

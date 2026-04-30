@@ -5,6 +5,7 @@ public class PauseMenuManager : MonoBehaviour
 {
 
     public GameObject pauseMenuCanvas;
+    public TabsController tabsController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +32,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         pauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f; 
+        tabsController.ActivateTab(0);
     }
 
     public void ResumeGame()
