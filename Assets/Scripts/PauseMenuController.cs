@@ -18,22 +18,25 @@ public class PauseMenuManager : MonoBehaviour
         {
             if (pauseMenuCanvas.activeSelf)
             {
-                pauseMenuCanvas.SetActive(false);
-                Time.timeScale = 1f; // Resume the game
+                ResumeGame();
             }
             else
             {
-                pauseMenuCanvas.SetActive(true);
-                Time.timeScale = 0f; // Pause the game
+                PauseGame();
             }
         }
     }
 
+    public void PauseGame()
+    {
+        pauseMenuCanvas.SetActive(true);
+        Time.timeScale = 0f; 
+    }
 
     public void ResumeGame()
     {
         pauseMenuCanvas.SetActive(false);
-        Time.timeScale = 1f; // Resume the game
+        Time.timeScale = 1f; 
     }
 
     public void QuitGame()

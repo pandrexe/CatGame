@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
     private bool isGrounded;
     private bool isOnPlatform;
+    private bool isFacingRight = true;
 
     [Header("Jumping")]
     [SerializeField] private float jumpPower = 7f;
@@ -88,13 +89,19 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
-        animator.SetFloat("inputX", horizontalMovement);
-        if (horizontalMovement != 0)
-        {
-            animator.SetFloat("lastInputX", horizontalMovement);
-        }
+        Flip();
     }
 
+    private void Flip()
+    {
+        if (horizontalMovement > 0 && !isFacingRight || horizontalMovement < 0 && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1;
+            transform.localScale = localScale;
+        }
+    }
     public void Run(InputAction.CallbackContext context)
     {
         if (context.started)
