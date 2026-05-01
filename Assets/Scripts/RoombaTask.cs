@@ -23,6 +23,7 @@ public class RoombaMinigame : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (GameManager.Instance != null && !GameManager.Instance.inMinigioco) return;
         if (giaSpento) return;
         giaSpento = true;
         spriteRenderer.sprite = spriteSpento;
