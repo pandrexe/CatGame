@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         // Se c'era un task attivo, gli diciamo di spegnersi e poi resettiamo la memoria
         if (taskAttivo != null)
         {
-            taskAttivo.DisattivaNemico();
+            taskAttivo.CompletaTask();
             taskAttivo = null;
         }
     }

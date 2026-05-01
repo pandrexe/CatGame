@@ -1,23 +1,22 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.Events; 
 
 public class InteractableTask : MonoBehaviour
 {
+    [Header("Identità Task")]
+    public TaskType tipoDiTask;
+
     [Header("Impostazioni Task")]
     public CinemachineCamera telecameraDelMinigioco;
 
     [Header("UI Interazione")]
     public GameObject testoInterazioneUI;
 
-    [Header("Sconfitta Nemico")]
-    public MonoBehaviour scriptMovimentoNemico;
-    public Collider2D colliderDannoNemico;
-
+    [Header("Conseguenze Vittoria")]
+    public UnityEvent azioniAllaVittoria; 
     private bool gattoVicino = false;
     private bool taskGiocato = false;
-
-    [Header("Audio")]
-    public AudioSource audioContinuoNemico;
 
     void Start()
     {
@@ -31,11 +30,6 @@ public class InteractableTask : MonoBehaviour
             taskGiocato = true;
 
             if (testoInterazioneUI != null) testoInterazioneUI.SetActive(false);
-
-            if (audioContinuoNemico != null)
-            {
-                audioContinuoNemico.spatialBlend = 0f;
-            }
 
             GameManager.Instance.IniziaMinigioco(telecameraDelMinigioco, this);
         }
@@ -59,21 +53,15 @@ public class InteractableTask : MonoBehaviour
         }
     }
 
-    public void DisattivaNemico()
+    // Il GameManager ora chiamerà questa funzione, che è totalmente generica
+    public void CompletaTask()
     {
-        if (scriptMovimentoNemico != null)
+        // 1. Diciamo al TaskManager di spuntare la lista
+        if (TaskManager.Instance != null)
         {
-            scriptMovimentoNemico.enabled = false;
+            TaskManager.Instance.SegnalaTaskCompletato(tipoDiTask);
         }
 
-        if (colliderDannoNemico != null)
-        {
-            colliderDannoNemico.enabled = false;
-        }
-
-        if (transform.parent != null)
-        {
-            transform.parent.tag = "Platform";
-        }
+        azioniAllaVittoria?.Invoke();
     }
 }

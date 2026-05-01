@@ -128,5 +128,15 @@ public class RoombaEnemy : MonoBehaviour
         {
             audioSource.volume = 0f;
         }
-    }   
+    }
+
+    public void SpegnimentoDefinitivo()
+    {
+        this.enabled = false;
+
+        if (transform.parent != null)
+        {
+            transform.parent.tag = "Platform";
+        }
+    }
 }

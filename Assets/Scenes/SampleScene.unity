@@ -210,11 +210,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89e36e8a0514724ea02add8a18b0dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableTask
+  tipoDiTask: 1
   telecameraDelMinigioco: {fileID: 119348708}
   testoInterazioneUI: {fileID: 670545269}
-  scriptMovimentoNemico: {fileID: 1199640465}
-  colliderDannoNemico: {fileID: 0}
-  audioContinuoNemico: {fileID: 1199640466}
+  azioniAllaVittoria:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1199640465}
+        m_TargetAssemblyTypeName: RoombaEnemy, Assembly-CSharp
+        m_MethodName: SpegnimentoDefinitivo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &69411297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,7 +2732,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.08
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2744,7 +2757,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.88, y: -2.094, z: -10}
+  m_LocalPosition: {x: 3002.4573, y: 1997.877, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6110,6 +6123,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1720357037}
   - component: {fileID: 1720357038}
+  - component: {fileID: 1720357040}
+  - component: {fileID: 1720357039}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6147,6 +6162,34 @@ MonoBehaviour:
   gatto: {fileID: 312802793}
   telecameraGatto: {fileID: 243880677}
   inMinigioco: 0
+--- !u!114 &1720357039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720357036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2bb5ed727adbc408aad2dd94403192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameTimer
+  tempoMassimoSecondi: 300
+--- !u!114 &1720357040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720357036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b41406d72570734685c1c7c8062db8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskManager
+  numeroTaskDaAssegnare: 5
+  taskAssegnati: 
+  taskCompletati: 
 --- !u!1 &1754230798
 GameObject:
   m_ObjectHideFlags: 0
