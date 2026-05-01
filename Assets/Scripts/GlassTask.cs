@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class GlassMinigame : MonoBehaviour
 {
     [Header("Impostazioni Minigioco (Bordi Tavolo)")]
-    public float distanzaCadutaDestra = 2.71f; 
-    public float distanzaCadutaSinistra = 2.71f; 
+    public float distanzaCadutaDestra = 2.2f; 
+    public float distanzaCadutaSinistra = 2.2f; 
     
     [Header("Condizione di Vittoria (Puzzle)")]
     public bool cuscinoPiazzato = false; 
