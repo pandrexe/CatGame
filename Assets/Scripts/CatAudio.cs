@@ -47,7 +47,6 @@ public class CatAudio : MonoBehaviour
             selectedMeowIndex = index;
             useRecordedMeow = false;
             Debug.Log("Miagolio predefinito selezionato: " + index);
-            audioSource.PlayOneShot(predefinedMeows[selectedMeowIndex]);
         }
     }
 

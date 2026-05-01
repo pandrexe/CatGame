@@ -49,6 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            horizontalMovement = 0f;
+        }
+
         isGrounded = IsGrounded();
         isMoving = Mathf.Abs(horizontalMovement) > 0;
         animator.SetBool("isMoving", isMoving);
@@ -88,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+
         horizontalMovement = context.ReadValue<Vector2>().x;
         Flip();
     }
@@ -102,8 +110,12 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
     public void Run(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+
         if (context.started)
         {
             isRunning = !isRunning;
@@ -114,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+
         if (context.performed && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
@@ -130,6 +145,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Drop(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+
         if (context.performed && isGrounded && isOnPlatform && playerCollider.enabled)
         {
             StartCoroutine(DisablePlayerCollider(0.25f));
@@ -161,6 +179,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void Meow(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+
         if (context.started && isGrounded)
         {
             animator.SetTrigger("Meow");
@@ -196,7 +217,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Fall()
     {
-        if(rb.linearVelocity.y < 0 && !isGrounded)
+        if (Time.timeScale == 0f) return;
+        if (rb.linearVelocity.y < 0 && !isGrounded)
         {
             animator.SetBool("isFalling", true);
         }
@@ -205,6 +227,4 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
     }
-
-  
 }

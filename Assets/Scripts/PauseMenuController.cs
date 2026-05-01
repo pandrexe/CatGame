@@ -3,16 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-
     public GameObject pauseMenuCanvas;
     public TabsController tabsController;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         pauseMenuCanvas.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,14 +29,17 @@ public class PauseMenuManager : MonoBehaviour
     public void PauseGame()
     {
         pauseMenuCanvas.SetActive(true);
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+
         tabsController.ActivateTab(0);
     }
 
     public void ResumeGame()
     {
         pauseMenuCanvas.SetActive(false);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
 
     public void QuitGame()
@@ -48,7 +49,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // Resume the game before restarting
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

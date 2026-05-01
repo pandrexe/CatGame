@@ -7,6 +7,9 @@ public class RoombaEnemy : MonoBehaviour
     public float speed = 2f;
     public LayerMask groundLayer;
     public Animator animator;
+    private AudioSource audioSource;
+    private float soundDistance = 30f;
+    private float volumeValueChanger = 1f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -16,14 +19,13 @@ public class RoombaEnemy : MonoBehaviour
 
     private bool isCatOnTop = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
@@ -56,10 +58,26 @@ public class RoombaEnemy : MonoBehaviour
             float direction = Mathf.Sign(target.position.x - transform.position.x);
             rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
         }
+
+        VolumeChanger();
+    }
+
+    private void OnDisable()
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero; 
+        }
+        if(audioSource != null)
+        {
+            audioSource.Stop();
+        }   
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (!this.enabled) return;
+
         if (!gameObject.activeInHierarchy) return;
 
         if (collision.transform == target)
@@ -72,6 +90,8 @@ public class RoombaEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!this.enabled) return;
+
         if (collision.transform == target)
         {
             Vector2 contactNormal = collision.GetContact(0).normal;
@@ -89,4 +109,24 @@ public class RoombaEnemy : MonoBehaviour
             }
         }
     }
+
+    private void VolumeChanger()
+    {
+        if (audioSource == null || target == null) return;
+
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            audioSource.volume = 1f;
+            return;
+        }
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (distance < soundDistance && distance > 0)
+        {
+            audioSource.volume = Mathf.Clamp(volumeValueChanger/distance, 0f, 1f);
+        }
+        else
+        {
+            audioSource.volume = 0f;
+        }
+    }   
 }
