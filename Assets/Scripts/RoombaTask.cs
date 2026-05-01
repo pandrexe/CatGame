@@ -38,8 +38,8 @@ public class RoombaMinigame : MonoBehaviour
 
     private IEnumerator ConcludiMinigioco()
     {
-        if (suonoSpegnimento != null) audioSource.PlayOneShot(suonoSpegnimento);
         yield return new WaitForSeconds(1f);
+        if (suonoSpegnimento != null) audioSource.PlayOneShot(suonoSpegnimento);
         GameManager.Instance.VinciMinigioco();
     }
 }
