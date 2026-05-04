@@ -1,50 +1,37 @@
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEngine.Events; 
 
-public class InteractableTask : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    [Header("Identità Task")]
-    public TaskType tipoDiTask;
-
-    [Header("Impostazioni Task")]
-    public CinemachineCamera telecameraDelMinigioco;
-
     [Header("UI Interazione")]
     public GameObject testoInterazioneUI;
 
-    [Header("Conseguenze Vittoria")]
-    public UnityEvent azioniAllaVittoria; 
-    private bool gattoVicino = false;
-    private bool taskGiocato = false;
+    protected bool gattoVicino = false;
+    protected bool puoInteragire = true; 
 
-    void Start()
+    protected virtual void Start()
     {
         if (testoInterazioneUI != null) testoInterazioneUI.SetActive(false);
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        if (gattoVicino && !taskGiocato && Input.GetKeyDown(KeyCode.E))
+        if (gattoVicino && puoInteragire && Input.GetKeyDown(KeyCode.E))
         {
-            taskGiocato = true;
-
             if (testoInterazioneUI != null) testoInterazioneUI.SetActive(false);
-
-            GameManager.Instance.IniziaMinigioco(telecameraDelMinigioco, this);
+            EseguiInterazione();
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !taskGiocato)
+        if (collision.CompareTag("Player") && puoInteragire)
         {
             gattoVicino = true;
             if (testoInterazioneUI != null) testoInterazioneUI.SetActive(true);
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -53,15 +40,6 @@ public class InteractableTask : MonoBehaviour
         }
     }
 
-    // Il GameManager ora chiamerà questa funzione, che è totalmente generica
-    public void CompletaTask()
-    {
-        // 1. Diciamo al TaskManager di spuntare la lista
-        if (TaskManager.Instance != null)
-        {
-            TaskManager.Instance.SegnalaTaskCompletato(tipoDiTask);
-        }
-
-        azioniAllaVittoria?.Invoke();
-    }
+    // Il metodo che i figli dovranno personalizzare
+    protected abstract void EseguiInterazione();
 }
