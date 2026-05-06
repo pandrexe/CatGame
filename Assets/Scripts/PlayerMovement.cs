@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isOnPlatform;
     private bool isFacingRight = true;
+    private bool puoMuoversi = true;
 
     [Header("Jumping")]
     [SerializeField] private float jumpPower = 7f;
@@ -38,13 +39,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        isRunning = false;
-        currentSpeed = walkSpeed;
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.RegistraPlayer(this.gameObject); isRunning = false;
+                currentSpeed = walkSpeed;
 
-        if (animator == null) animator = GetComponent<Animator>();
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        if (catAudio == null) catAudio = GetComponent<CatAudio>();
-        if (playerCollider == null) playerCollider = GetComponent<BoxCollider2D>();
+                if (animator == null) animator = GetComponent<Animator>();
+                if (rb == null) rb = GetComponent<Rigidbody2D>();
+                if (catAudio == null) catAudio = GetComponent<CatAudio>();
+                if (playerCollider == null) playerCollider = GetComponent<BoxCollider2D>();
+            }
     }
 
     void Update()
@@ -56,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         isGrounded = IsGrounded();
         isMoving = Mathf.Abs(horizontalMovement) > 0;
-        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isMoving", isMoving && puoMuoversi);
         animator.SetBool("isRunning", isRunning && isMoving);
         animator.SetBool("isGrounded", isGrounded);
         Fall();
@@ -64,15 +68,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float targetSpeedX = horizontalMovement * currentSpeed;
+        // Se è stordito, forziamo la velocità a 0 (mantenendo quella verticale per la gravità)
+        if (!puoMuoversi)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
 
+        float targetSpeedX = horizontalMovement * currentSpeed;
         if (isGrounded && currentPlatformRb != null)
         {
             targetSpeedX += currentPlatformRb.linearVelocity.x;
         }
 
         rb.linearVelocity = new Vector2(targetSpeedX, rb.linearVelocity.y);
-
         Gravity();
     }
 
@@ -95,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.timeScale == 0f) return;
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
+        if (!puoMuoversi) return; // Blocca i comandi durante il volo!
 
         horizontalMovement = context.ReadValue<Vector2>().x;
         Flip();
@@ -227,4 +237,26 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isFalling", false);
         }
     }
+
+    public void ApplicaStordimento(float durata)
+    {
+        // AZZERIAMO TUTTO ISTANTANEAMENTE
+        horizontalMovement = 0f;
+        isRunning = false;
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        // Fermiamo le animazioni
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isRunning", false);
+
+        StartCoroutine(RoutineStordimento(durata));
+    }
+
+    private IEnumerator RoutineStordimento(float durata)
+    {
+        puoMuoversi = false;
+        yield return new WaitForSeconds(durata);
+        puoMuoversi = true;
+    }
+
 }

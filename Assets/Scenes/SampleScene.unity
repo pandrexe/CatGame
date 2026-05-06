@@ -5152,6 +5152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 0}
+  distanzaTeletrasporto: 2
   statoAttuale: 0
   cuscino: {fileID: 1277934182}
   carryPoint: {fileID: 796555059}
@@ -7215,9 +7216,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2a9ae1210c50f42b9b31a7b4b740ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  viteMassime: 7
+  viteAttuali: 0
+  livelloCorrente: 1
   gatto: {fileID: 312802793}
   telecameraGatto: {fileID: 243880677}
   inMinigioco: 0
+  durataInvulnerabilita: 2
 --- !u!114 &1720357039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7243,7 +7248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b41406d72570734685c1c7c8062db8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskManager
-  numeroTaskDaAssegnare: 5
+  numeroTaskDaAssegnare: 2
+  poolFacili: 0100000002000000
+  poolMedi: 
+  poolDifficili: 
   taskAssegnati: 
   taskCompletati: 
 --- !u!1 &1754230798

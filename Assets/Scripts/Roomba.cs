@@ -10,6 +10,7 @@ public class RoombaEnemy : MonoBehaviour
     public float speed = 2f;
     public LayerMask groundLayer;
     public Animator animator;
+    public float distanzaTeletrasporto = 3f;
 
     [Header("Meccanica Cuscino")]
     public StatoRoomba statoAttuale = StatoRoomba.InsegueGatto;
@@ -79,11 +80,19 @@ public class RoombaEnemy : MonoBehaviour
             // 2. È stato spostato dalla sua posizione iniziale? (Basta che si sia mosso di 1 metro)
             bool spostatoDaInizio = (cuscino != null && Vector2.Distance(cuscino.position, posizioneInizialeCuscino) > 1f);
 
-            // Se è a terra, NON è nel suo posto originale, e io stavo inseguendo il gatto... VADO A RUBARLO!
-            if (isPoggiato && spostatoDaInizio && statoAttuale == StatoRoomba.InsegueGatto)
+            bool stessaAltezza = false;
+            if (cuscino != null)
+            {
+                float differenzaAltezza = Mathf.Abs(cuscino.position.y - transform.position.y);
+                stessaAltezza = (differenzaAltezza < 0.5f); // Puoi abbassare a 0.5f se il Roomba è molto basso
+            }
+
+            // Se è poggiato, spostato, ALLA STESSA ALTEZZA, e stavo inseguendo il gatto... VADO A RUBARLO!
+            if (isPoggiato && spostatoDaInizio && stessaAltezza && statoAttuale == StatoRoomba.InsegueGatto)
             {
                 statoAttuale = StatoRoomba.RubaCuscino;
             }
+
 
             Vector3 destinazione = transform.position;
             float velocitaAttuale = speed;
@@ -158,29 +167,36 @@ public class RoombaEnemy : MonoBehaviour
         }
     }
 
-   private void MollaCuscino()
+    private void MollaCuscino()
     {
         statoAttuale = StatoRoomba.InsegueGatto;
-        
-        // Ho rimosso la riga "isCuscinoPiazzato = false;" !
 
         if (triggerInterazione != null) triggerInterazione.enabled = true;
 
         if (cuscino != null)
         {
             cuscino.SetParent(null);
-            
-            // Lo rimette esattamente alle coordinate X originali
+
+            // Lo rimette alle coordinate X originali
             cuscino.position = new Vector3(posizioneInizialeCuscino.x, cuscino.position.y, cuscino.position.z);
 
-            // RIACCENDE LA FISICA DEL CUSCINO (il trucco del simulated!)
             Rigidbody2D rbCuscino = cuscino.GetComponent<Rigidbody2D>();
             if (rbCuscino != null)
             {
+                // --- QUESTE RIGHE SONO FONDAMENTALI ---
                 rbCuscino.simulated = true;
+                rbCuscino.bodyType = RigidbodyType2D.Dynamic; // Torna a subire la gravità!
+            }
+
+            // Riaccendiamo anche i collider solidi se li avevi spenti
+            Collider2D[] colliderCuscino = cuscino.GetComponents<Collider2D>();
+            foreach (Collider2D col in colliderCuscino)
+            {
+                if (!col.isTrigger) col.enabled = true;
             }
         }
     }
+
     private void OnDisable()
     {
         if (rb != null) rb.linearVelocity = Vector2.zero; 
@@ -198,20 +214,41 @@ public class RoombaEnemy : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!this.enabled) return;
 
-        if (collision.transform == target)
+        if (collision.transform == target) // Se colpisce il Gatto
         {
             Vector2 contactNormal = collision.GetContact(0).normal;
 
+            // Se il gatto viene investito (non ci è saltato sopra)
             if (contactNormal.y > -0.5f)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // 1. Chiamiamo il danno
+                GameManager.Instance.PerdiVita();
+
+                // 2. Calcoliamo la direzione di sbalzo
+                float direzioneX = (collision.transform.position.x > transform.position.x) ? 1f : -1f;
+
+                // 3. Stordiamo il gatto (chiamiamo la funzione che azzera la velocità!)
+                PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
+                if (scriptGatto != null)
+                {
+                    scriptGatto.ApplicaStordimento(0.5f); // Mezzo secondo di stop totale
+                }
+
+                // 4. Teletrasporto più deciso (aumentiamo un po' la distanza se serve)
+                Vector3 nuovaPosizione = collision.transform.position;
+                nuovaPosizione.x += (distanzaTeletrasporto * direzioneX);
+                nuovaPosizione.y += 0.5f; 
+
+                collision.transform.position = nuovaPosizione;
             }
             else
             {
+                // ... logica per quando il gatto salta sopra ...
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 isCatOnTop = true;
             }
