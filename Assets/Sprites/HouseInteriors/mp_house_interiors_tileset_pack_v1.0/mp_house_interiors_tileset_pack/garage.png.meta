@@ -177,7 +177,7 @@ TextureImporter:
         width: 34
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,7 +199,7 @@ TextureImporter:
         width: 28
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -221,7 +221,7 @@ TextureImporter:
         width: 23
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -243,7 +243,7 @@ TextureImporter:
         width: 53
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -265,7 +265,7 @@ TextureImporter:
         width: 22
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -287,7 +287,7 @@ TextureImporter:
         width: 31
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -309,7 +309,7 @@ TextureImporter:
         width: 31
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -331,7 +331,7 @@ TextureImporter:
         width: 11
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -353,7 +353,7 @@ TextureImporter:
         width: 15
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -375,7 +375,7 @@ TextureImporter:
         width: 14
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -397,7 +397,7 @@ TextureImporter:
         width: 9
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -419,7 +419,7 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -436,12 +436,12 @@ TextureImporter:
       name: garage_12
       rect:
         serializedVersion: 2
-        x: 95
+        x: 96
         y: 63
-        width: 118
+        width: 117
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -455,15 +455,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: garage_13
+      name: SHelves
       rect:
         serializedVersion: 2
         x: 223
         y: 31
-        width: 50
-        height: 66
+        width: 49
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -485,7 +485,7 @@ TextureImporter:
         width: 13
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -507,7 +507,7 @@ TextureImporter:
         width: 13
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -529,7 +529,7 @@ TextureImporter:
         width: 13
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -551,7 +551,7 @@ TextureImporter:
         width: 13
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -573,7 +573,7 @@ TextureImporter:
         width: 14
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -595,7 +595,7 @@ TextureImporter:
         width: 24
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -617,7 +617,7 @@ TextureImporter:
         width: 18
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -639,7 +639,7 @@ TextureImporter:
         width: 66
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -653,15 +653,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: garage_22
+      name: box
       rect:
         serializedVersion: 2
-        x: 167
-        y: 31
-        width: 34
-        height: 16
+        x: 232
+        y: 80
+        width: 32
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -683,7 +683,7 @@ TextureImporter:
         width: 288
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -700,7 +700,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0ae89d8cbd665404299885f1eab45576
     internalID: 0
     vertices: []
     indices: 
@@ -710,12 +710,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      SHelves: 435205915758997816
+      box: -7760156010146361475
       garage_0: 3500446970079045336
       garage_1: -2356336596638827033
       garage_10: -1821677252667728309
       garage_11: -61066718953411939
       garage_12: 3818872506554814088
-      garage_13: 435205915758997816
       garage_14: 5422728201962008468
       garage_15: 6506154724160773338
       garage_16: -2025060425965024092
@@ -725,7 +726,6 @@ TextureImporter:
       garage_2: 4741457463094663151
       garage_20: -2549135047925133932
       garage_21: 6108645001026410967
-      garage_22: -7760156010146361475
       garage_23: -1122745026451290554
       garage_3: -5456391403289432790
       garage_4: 3372770363380270118

@@ -194,13 +194,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bathroom_1
+      name: BrownSHelf
       rect:
         serializedVersion: 2
-        x: 226
-        y: 130
-        width: 28
-        height: 28
+        x: 15
+        y: 140
+        width: 49
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -735,13 +735,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      BrownSHelf: 6983358275279283047
       Mirror: -3521427111303423466
       Shelves: 3155690606720968461
       Shower: 2983476358436010028
       Sink: -2141553197332089939
       ToiletSeat: -4719920441953140294
       UpperShelf: 1822452513176793564
-      bathroom_1: 6983358275279283047
       bathroom_10: -4309067922572259023
       bathroom_12: 424640374056618819
       bathroom_13: 3360226103960135051
