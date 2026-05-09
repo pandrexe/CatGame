@@ -634,9 +634,9 @@ GameObject:
   - component: {fileID: 663701912}
   - component: {fileID: 663701911}
   - component: {fileID: 663701910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shelves
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1265,9 +1265,9 @@ GameObject:
   - component: {fileID: 856853199}
   - component: {fileID: 856853198}
   - component: {fileID: 856853197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ToiletSeat
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1770,9 +1770,9 @@ GameObject:
   - component: {fileID: 1110062109}
   - component: {fileID: 1110062108}
   - component: {fileID: 1110062107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sink
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3031,9 +3031,9 @@ GameObject:
   - component: {fileID: 2019568900}
   - component: {fileID: 2019568899}
   - component: {fileID: 2019568898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpperShelf
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

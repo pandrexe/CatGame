@@ -3114,9 +3114,9 @@ GameObject:
   - component: {fileID: 683741158}
   - component: {fileID: 683741157}
   - component: {fileID: 683741160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WorkStation
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4979,9 +4979,9 @@ GameObject:
   - component: {fileID: 2020783895}
   - component: {fileID: 2020783894}
   - component: {fileID: 2020783897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: brownshelf 3
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
