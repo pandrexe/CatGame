@@ -18,7 +18,6 @@ public class GameTimer : MonoBehaviour
     {
         if (timerAttivo)
         {
-            // Time.deltaTime tiene già conto del Time.timeScale = 0 della pausa!
             tempoRimanente -= Time.deltaTime;
 
             if (tempoRimanente <= 0)
@@ -30,13 +29,21 @@ public class GameTimer : MonoBehaviour
         }
     }
 
-    private void TempoScaduto()
+    // --- NUOVA FUNZIONE PER I POWERUP ---
+    public void AggiungiTempo(float secondiExtra)
     {
-        Debug.Log("TEMPO SCADUTO! Hai Perso!");
-        // Qui in futuro chiameremo GameManager.Instance.Sconfitta()
+        tempoRimanente += secondiExtra;
+        Debug.Log($"+{secondiExtra} sec! Nuovo tempo: {OttieniTempoFormattato()}");
     }
 
-    // Funzione utile se in futuro vorrai mostrare il tempo a schermo (sulla UI)
+    private void TempoScaduto()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameOver("TEMPO SCADUTO!");
+        }
+    }
+
     public string OttieniTempoFormattato()
     {
         int minuti = Mathf.FloorToInt(tempoRimanente / 60);
