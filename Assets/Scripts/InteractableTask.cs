@@ -10,6 +10,9 @@ public class InteractableTask : Interactable
     [Header("Impostazioni Task")]
     public CinemachineCamera telecameraDelMinigioco;
 
+    [Header("Impostazioni Cursore")]
+    public TipoCursore cursoreRichiesto = TipoCursore.Singola;
+
     [Header("Conseguenze Vittoria")]
     public UnityEvent azioniAllaVittoria;
 
@@ -17,6 +20,10 @@ public class InteractableTask : Interactable
     {
         puoInteragire = false; 
         GameManager.Instance.IniziaMinigioco(telecameraDelMinigioco, this);
+        if (MinigameCursor.Instance != null)
+        {
+            MinigameCursor.Instance.ImpostaCursore(cursoreRichiesto);
+        }
     }
 
     public void CompletaTask()

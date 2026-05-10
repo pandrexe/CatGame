@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections; // FONDAMENTALE: Ci serve per usare le Coroutine (IEnumerator)!
+using System.Collections;
 
 public class ToiletPaperTask : MonoBehaviour
 {
@@ -15,32 +15,65 @@ public class ToiletPaperTask : MonoBehaviour
     private Vector3 ultimaPosizioneMouse;
     private bool staTrascinando = false;
 
+    // Variabili per l'alternanza
+    private int prossimoTastoAtteso = -1;
+    private int tastoInUso = -1;
+
     void Update()
     {
         if (GameManager.Instance == null || !GameManager.Instance.inMinigioco || taskFinito)
             return;
 
-        // 1. INIZIO CLICK
-        if (Input.GetMouseButtonDown(0))
+        // 1. INIZIO CLICK (Ora con precisione millimetrica sulle zampe!)
+        if (!staTrascinando)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            if (colliderCarta != null && colliderCarta.OverlapPoint(mousePos2D))
+            // Proviamo col Tasto SINISTRO (0) - ZAMPA SX
+            if (Input.GetMouseButtonDown(0) && (prossimoTastoAtteso == -1 || prossimoTastoAtteso == 0))
             {
-                staTrascinando = true;
-                ultimaPosizioneMouse = mousePos;
+                // Controlliamo se esiste il cursore globale e la sua zampa sinistra
+                if (MinigameCursor.Instance != null && MinigameCursor.Instance.zampaSx != null)
+                {
+                    // Prendiamo la posizione ESATTA della zampa sinistra visibile!
+                    Vector2 posZampaSx = MinigameCursor.Instance.zampaSx.position;
+
+                    // Controlliamo se LA ZAMPA (non il mouse) sta toccando la carta
+                    if (colliderCarta != null && colliderCarta.OverlapPoint(posZampaSx))
+                    {
+                        staTrascinando = true;
+                        tastoInUso = 0;
+                        prossimoTastoAtteso = 1; // Prossima: Destra!
+                        ultimaPosizioneMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    }
+                }
+            }
+            // Proviamo col Tasto DESTRO (1) - ZAMPA DX
+            else if (Input.GetMouseButtonDown(1) && (prossimoTastoAtteso == -1 || prossimoTastoAtteso == 1))
+            {
+                if (MinigameCursor.Instance != null && MinigameCursor.Instance.zampaDx != null)
+                {
+                    // Prendiamo la posizione ESATTA della zampa destra visibile!
+                    Vector2 posZampaDx = MinigameCursor.Instance.zampaDx.position;
+
+                    if (colliderCarta != null && colliderCarta.OverlapPoint(posZampaDx))
+                    {
+                        staTrascinando = true;
+                        tastoInUso = 1;
+                        prossimoTastoAtteso = 0; // Prossima: Sinistra!
+                        ultimaPosizioneMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    }
+                }
             }
         }
 
         // 2. RILASCIO
-        if (Input.GetMouseButtonUp(0))
+        if (tastoInUso != -1 && Input.GetMouseButtonUp(tastoInUso))
         {
             staTrascinando = false;
+            tastoInUso = -1;
         }
 
         // 3. TRASCINAMENTO
-        if (Input.GetMouseButton(0) && staTrascinando)
+        if (staTrascinando && tastoInUso != -1 && Input.GetMouseButton(tastoInUso))
         {
             Vector3 posizioneCorrenteMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float deltaY = ultimaPosizioneMouse.y - posizioneCorrenteMouse.y;
@@ -65,25 +98,21 @@ public class ToiletPaperTask : MonoBehaviour
     {
         taskFinito = true;
         staTrascinando = false;
+        tastoInUso = -1;
 
-        // Invece di vincere subito, avviamo la sequenza finale (Caduta + Pausa)
         StartCoroutine(SequenzaCadutaVittoria());
     }
 
     private IEnumerator SequenzaCadutaVittoria()
     {
-        // 1. Spegniamo il collider della carta così non possiamo più cliccarla per sbaglio
         if (colliderCarta != null) colliderCarta.enabled = false;
 
-        // 2. Aggiungiamo un Rigidbody2D al volo per farla cadere realisticamente!
         Rigidbody2D rbCaduta = spriteCartaGigante.gameObject.AddComponent<Rigidbody2D>();
         rbCaduta.bodyType = RigidbodyType2D.Dynamic;
-        rbCaduta.gravityScale = 3f; // Mettiamo 3 così cade velocemente senza sembrare una piuma
+        rbCaduta.gravityScale = 3f;
 
-        // 3. Aspettiamo 1 secondo pieno
         yield return new WaitForSeconds(1f);
 
-        // 4. Ora che la carta è caduta e abbiamo visto il rotolo vuoto, chiudiamo il minigioco!
         GameManager.Instance.VinciMinigioco();
     }
 }
