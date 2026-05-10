@@ -11,7 +11,7 @@ public class InteractableTask : Interactable
     public CinemachineCamera telecameraDelMinigioco;
 
     [Header("Conseguenze Vittoria")]
-    public UnityEvent azioniAllaVittoria; 
+    public UnityEvent azioniAllaVittoria;
 
     protected override void EseguiInterazione()
     {
