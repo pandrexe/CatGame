@@ -101,15 +101,16 @@ public class RoombaEnemy : MonoBehaviour
             if (contactNormal.y > -0.5f) // Danno laterale
             {
                 GameManager.Instance.PerdiVita();
-                float direzioneX = (collision.transform.position.x > transform.position.x) ? 1f : -1f;
 
-                PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
-                if (scriptGatto != null) scriptGatto.ApplicaStordimento(0.5f);
-
-                Vector3 nuovaPosizione = collision.transform.position;
-                nuovaPosizione.x += (distanzaTeletrasporto * direzioneX);
-                nuovaPosizione.y += 0.5f;
-                collision.transform.position = nuovaPosizione;
+                if (GameManager.Instance != null && !GameManager.Instance.inMinigioco)
+                {
+                    PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
+                    if (scriptGatto != null)
+                    {
+                        // IL NEMICO CHIAMA UNA SOLA RIGA!
+                        scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, 0.5f);
+                    }
+                }
             }
             else // Gatto sopra
             {

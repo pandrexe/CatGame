@@ -238,6 +238,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SubisciKnockback(Transform posizioneNemico, float distanzaSbalzo, float durataStun)
+    {
+        // 1. Applica lo stordimento usando la funzione che avevi già creato
+        ApplicaStordimento(durataStun);
+
+        // 2. Calcola la direzione e fai il balzo
+        float direzioneX = (transform.position.x > posizioneNemico.position.x) ? 1f : -1f;
+        Vector3 nuovaPosizione = transform.position;
+        nuovaPosizione.x += (distanzaSbalzo * direzioneX);
+        nuovaPosizione.y += 0.5f;
+
+        transform.position = nuovaPosizione;
+    }
+
     public void ApplicaStordimento(float durata)
     {
         // AZZERIAMO TUTTO ISTANTANEAMENTE

@@ -7,8 +7,8 @@ public class PitchforkEnemy : MonoBehaviour
     public float diveSpeed = 18f;
     public float returnSpeed = 3f;
     public float shakeAmount = 0.15f;
-    public float activationRangeX = 8f; 
-    public float yAttacco = -4f; 
+    public float activationRangeX = 8f;
+    public float yAttacco = -4f;
     public float tempoDiAttesa = 1.0f;
     public float distanzaTeletrasporto = 3f;
     public float durataStordimento = 0.5f;
@@ -64,7 +64,7 @@ public class PitchforkEnemy : MonoBehaviour
 
         staTremando = false;
         staAttaccando = true;
-        transform.position = posOriginale; 
+        transform.position = posOriginale;
 
         while (transform.position.y > yAttacco)
         {
@@ -75,7 +75,7 @@ public class PitchforkEnemy : MonoBehaviour
         staAttaccando = false;
         yield return new WaitForSeconds(0.5f);
         staTornando = true;
-        
+
         while (transform.position.y < startY)
         {
             transform.position += Vector3.up * returnSpeed * Time.deltaTime;
@@ -87,23 +87,19 @@ public class PitchforkEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Il danno viene applicato sempre, indipendentemente dallo stato del minigioco
         if (collision.CompareTag("Player") && staAttaccando)
         {
             GameManager.Instance.PerdiVita();
 
-            float direzioneX = (collision.transform.position.x > transform.position.x) ? 1f : -1f;
-
-            PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
-            if (scriptGatto != null) 
+            if (GameManager.Instance != null && !GameManager.Instance.inMinigioco)
             {
-                scriptGatto.ApplicaStordimento(durataStordimento);
+                PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
+                if (scriptGatto != null)
+                {
+                    // IL NEMICO CHIAMA UNA SOLA RIGA!
+                    scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, durataStordimento);
+                }
             }
-
-            Vector3 nuovaPosizione = collision.transform.position;
-            nuovaPosizione.x += (distanzaTeletrasporto * direzioneX);
-            nuovaPosizione.y += 0.5f; 
-            collision.transform.position = nuovaPosizione;
         }
     }
 }
