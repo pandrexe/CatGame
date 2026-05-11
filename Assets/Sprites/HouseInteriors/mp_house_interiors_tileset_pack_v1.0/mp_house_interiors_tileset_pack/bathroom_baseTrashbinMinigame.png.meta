@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: 5227c7dacc85f3d4d9779152d3dec89a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6250937705423155677
+    second: bathroom_baseTrashbinMinigame_0
+  - first:
+      213: 8414508326321235709
+    second: bathroom_baseTrashbinMinigame_1
+  - first:
+      213: -8690663392122273654
+    second: bathroom_baseTrashbinMinigame_2
+  - first:
+      213: -9164400579376793282
+    second: bathroom_baseTrashbinMinigame_3
+  - first:
+      213: 8728060875884289738
+    second: bathroom_baseTrashbinMinigame_4
+  - first:
+      213: 993706440982891688
+    second: bathroom_baseTrashbinMinigame_5
+  - first:
+      213: -3937126414200758009
+    second: bathroom_baseTrashbinMinigame_6
+  - first:
+      213: 5969919781003903298
+    second: bathroom_baseTrashbinMinigame_7
+  - first:
+      213: 4430074942243894896
+    second: bathroom_baseTrashbinMinigame_8
+  - first:
+      213: 8557264670872567818
+    second: bathroom_baseTrashbinMinigame_9
+  - first:
+      213: 2884141327230633461
+    second: bathroom_baseTrashbinMinigame_10
+  - first:
+      213: 1331371139178117190
+    second: bathroom_baseTrashbinMinigame_11
+  - first:
+      213: -2581453743442910497
+    second: bathroom_baseTrashbinMinigame_12
+  - first:
+      213: -5415875166206655037
+    second: bathroom_baseTrashbinMinigame_13
+  - first:
+      213: -1416868536721503392
+    second: bathroom_baseTrashbinMinigame_14
+  - first:
+      213: 6164781261002803300
+    second: bathroom_baseTrashbinMinigame_15
+  - first:
+      213: 6612733533331326903
+    second: bathroom_baseTrashbinMinigame_16
+  - first:
+      213: 4699719451648519021
+    second: bathroom_baseTrashbinMinigame_17
+  - first:
+      213: 4416403268333723594
+    second: bathroom_baseTrashbinMinigame_18
+  - first:
+      213: 428362883797188061
+    second: bathroom_baseTrashbinMinigame_19
+  - first:
+      213: -803007024042409202
+    second: bathroom_baseTrashbinMinigame_20
+  - first:
+      213: 8412486489143672480
+    second: bathroom_baseTrashbinMinigame_21
+  - first:
+      213: 1303883753457530644
+    second: bathroom_baseTrashbinMinigame_22
+  - first:
+      213: 6011626841947641430
+    second: bathroom_baseTrashbinMinigame_23
+  - first:
+      213: -428890407948145909
+    second: bathroom_baseTrashbinMinigame_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 130
+        width: 210
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1b7d469bacfb650800000000000000
+      internalID: 6250937705423155677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df6a1f5adb656c470800000000000000
+      internalID: 8414508326321235709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 145
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a808f02a0bf846780800000000000000
+      internalID: -8690663392122273654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 111
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39bcd66a3281d080800000000000000
+      internalID: -9164400579376793282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 63
+        width: 106
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ace51159f1d402970800000000000000
+      internalID: 8728060875884289738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 63
+        width: 129
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac8dc14eba5acd00800000000000000
+      internalID: 993706440982891688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_6
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 70
+        width: 21
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 701a1c5d2648c59c0800000000000000
+      internalID: -3937126414200758009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_7
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 95
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 241c05c296a69d250800000000000000
+      internalID: 5969919781003903298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_8
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 95
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0767ecc30b9ca7d30800000000000000
+      internalID: 4430074942243894896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_9
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 65
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a000c5c31e281c670800000000000000
+      internalID: 8557264670872567818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 58
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f50b9b9147860820800000000000000
+      internalID: 2884141327230633461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 31
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6483be64ffaf97210800000000000000
+      internalID: 1331371139178117190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 38
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd2abf95f75dc2cd0800000000000000
+      internalID: -2581453743442910497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 47
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5846a1b32f6d4b0800000000000000
+      internalID: -5415875166206655037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_14
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 47
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b894f9295465ce0800000000000000
+      internalID: -1416868536721503392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 47
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4688e0cf4e3bd8550800000000000000
+      internalID: 6164781261002803300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_16
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 47
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b70780ec1625cb50800000000000000
+      internalID: 6612733533331326903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_17
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 47
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6be08be0f1c83140800000000000000
+      internalID: 4699719451648519021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_18
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 31
+        width: 146
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acfd7e99f573a4d30800000000000000
+      internalID: 4416403268333723594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_19
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 31
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd71b3f5c9d1f500800000000000000
+      internalID: 428362883797188061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 31
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e030fcbbd552bd4f0800000000000000
+      internalID: -803007024042409202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_21
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 31
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae7e2ff3e72fb470800000000000000
+      internalID: 8412486489143672480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_22
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 31
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4173d319d53581210800000000000000
+      internalID: 1303883753457530644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_23
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 31
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6561e7403c69d6350800000000000000
+      internalID: 6011626841947641430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_baseTrashbinMinigame_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 304
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0bada242764c0af0800000000000000
+      internalID: -428890407948145909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bathroom_baseTrashbinMinigame_0: 6250937705423155677
+      bathroom_baseTrashbinMinigame_1: 8414508326321235709
+      bathroom_baseTrashbinMinigame_10: 2884141327230633461
+      bathroom_baseTrashbinMinigame_11: 1331371139178117190
+      bathroom_baseTrashbinMinigame_12: -2581453743442910497
+      bathroom_baseTrashbinMinigame_13: -5415875166206655037
+      bathroom_baseTrashbinMinigame_14: -1416868536721503392
+      bathroom_baseTrashbinMinigame_15: 6164781261002803300
+      bathroom_baseTrashbinMinigame_16: 6612733533331326903
+      bathroom_baseTrashbinMinigame_17: 4699719451648519021
+      bathroom_baseTrashbinMinigame_18: 4416403268333723594
+      bathroom_baseTrashbinMinigame_19: 428362883797188061
+      bathroom_baseTrashbinMinigame_2: -8690663392122273654
+      bathroom_baseTrashbinMinigame_20: -803007024042409202
+      bathroom_baseTrashbinMinigame_21: 8412486489143672480
+      bathroom_baseTrashbinMinigame_22: 1303883753457530644
+      bathroom_baseTrashbinMinigame_23: 6011626841947641430
+      bathroom_baseTrashbinMinigame_24: -428890407948145909
+      bathroom_baseTrashbinMinigame_3: -9164400579376793282
+      bathroom_baseTrashbinMinigame_4: 8728060875884289738
+      bathroom_baseTrashbinMinigame_5: 993706440982891688
+      bathroom_baseTrashbinMinigame_6: -3937126414200758009
+      bathroom_baseTrashbinMinigame_7: 5969919781003903298
+      bathroom_baseTrashbinMinigame_8: 4430074942243894896
+      bathroom_baseTrashbinMinigame_9: 8557264670872567818
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

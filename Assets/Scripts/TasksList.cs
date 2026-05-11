@@ -12,5 +12,6 @@ public enum TaskType
         FaiCanestro,
         FaiBirdWatching,
         FaiIlPane,
-        FaiAmiciziaConTopo
+        FaiAmiciziaConTopo,
+        ButtaSpazzatura
 }

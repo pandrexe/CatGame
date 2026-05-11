@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: e8e345994fcd1604090f804333c30e8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8363283123827338
+    second: bathroom_withTrash_0
+  - first:
+      213: 5571325821103324161
+    second: bathroom_withTrash_1
+  - first:
+      213: -5682374288282173892
+    second: bathroom_withTrash_2
+  - first:
+      213: 2277633102104208424
+    second: bathroom_withTrash_3
+  - first:
+      213: 6469444086539157724
+    second: bathroom_withTrash_4
+  - first:
+      213: -827912467770122304
+    second: bathroom_withTrash_5
+  - first:
+      213: -6571675875775474935
+    second: bathroom_withTrash_6
+  - first:
+      213: -3650556286798393667
+    second: bathroom_withTrash_7
+  - first:
+      213: -4994042213272890086
+    second: bathroom_withTrash_8
+  - first:
+      213: -796886195248052083
+    second: bathroom_withTrash_9
+  - first:
+      213: -6305509923364680236
+    second: bathroom_withTrash_10
+  - first:
+      213: -7373481464003538711
+    second: bathroom_withTrash_11
+  - first:
+      213: -3020567564896278211
+    second: bathroom_withTrash_12
+  - first:
+      213: -6950479368967066977
+    second: bathroom_withTrash_13
+  - first:
+      213: 2241678702306801921
+    second: bathroom_withTrash_14
+  - first:
+      213: -6935356508622904459
+    second: bathroom_withTrash_15
+  - first:
+      213: 9035799640021442254
+    second: bathroom_withTrash_16
+  - first:
+      213: -7102682320818361752
+    second: bathroom_withTrash_17
+  - first:
+      213: 7011528009646449929
+    second: bathroom_withTrash_18
+  - first:
+      213: -7643099012922532642
+    second: bathroom_withTrash_19
+  - first:
+      213: -5977713807930376524
+    second: bathroom_withTrash_20
+  - first:
+      213: -2550393155997384384
+    second: bathroom_withTrash_21
+  - first:
+      213: -8389471167615984875
+    second: bathroom_withTrash_22
+  - first:
+      213: 2614190755726966756
+    second: bathroom_withTrash_23
+  - first:
+      213: -617956516282985788
+    second: bathroom_withTrash_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bathroom_withTrash_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 130
+        width: 210
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67d8f3863a942eff0800000000000000
+      internalID: -8363283123827338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10c33dee053515d40800000000000000
+      internalID: 5571325821103324161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 145
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3eb02af0b62421b0800000000000000
+      internalID: -5682374288282173892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 111
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 824a79b2d37cb9f10800000000000000
+      internalID: 2277633102104208424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 63
+        width: 106
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd00b60ce1518c950800000000000000
+      internalID: 6469444086539157724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 95
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cfd17d3ff9a284f0800000000000000
+      internalID: -827912467770122304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 63
+        width: 129
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9031665fb97bcc4a0800000000000000
+      internalID: -6571675875775474935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_7
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 70
+        width: 21
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe00dc066e965dc0800000000000000
+      internalID: -3650556286798393667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_8
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 95
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15509c011991bab0800000000000000
+      internalID: -4994042213272890086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_9
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 65
+        width: 34
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88c3dd3a34e0f4f0800000000000000
+      internalID: -796886195248052083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 58
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ddc52af1245e78a0800000000000000
+      internalID: -6305509923364680236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 31
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e05424cca12ca990800000000000000
+      internalID: -7373481464003538711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 38
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d396a4aadc9c416d0800000000000000
+      internalID: -3020567564896278211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 47
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a6902d6dfea8f90800000000000000
+      internalID: -6950479368967066977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_14
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 47
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1093e8f17ea0c1f10800000000000000
+      internalID: 2241678702306801921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 47
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573a6d0200aa0cf90800000000000000
+      internalID: -6935356508622904459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_16
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 47
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece941d16eb956d70800000000000000
+      internalID: 9035799640021442254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_17
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 47
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86aac239f043e6d90800000000000000
+      internalID: -7102682320818361752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_18
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 31
+        width: 146
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 905adab7393fd4160800000000000000
+      internalID: 7011528009646449929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_19
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 31
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc1d9f41f14ee590800000000000000
+      internalID: -7643099012922532642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 31
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bebc5586f4ea0da0800000000000000
+      internalID: -5977713807930376524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_21
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 31
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 041403befee2b9cd0800000000000000
+      internalID: -2550393155997384384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_22
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 31
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51b1ed02c6c929b80800000000000000
+      internalID: -8389471167615984875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_23
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 31
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ef373a44a8774420800000000000000
+      internalID: 2614190755726966756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bathroom_withTrash_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 304
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c2905092d39c67f0800000000000000
+      internalID: -617956516282985788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bathroom_withTrash_0: -8363283123827338
+      bathroom_withTrash_1: 5571325821103324161
+      bathroom_withTrash_10: -6305509923364680236
+      bathroom_withTrash_11: -7373481464003538711
+      bathroom_withTrash_12: -3020567564896278211
+      bathroom_withTrash_13: -6950479368967066977
+      bathroom_withTrash_14: 2241678702306801921
+      bathroom_withTrash_15: -6935356508622904459
+      bathroom_withTrash_16: 9035799640021442254
+      bathroom_withTrash_17: -7102682320818361752
+      bathroom_withTrash_18: 7011528009646449929
+      bathroom_withTrash_19: -7643099012922532642
+      bathroom_withTrash_2: -5682374288282173892
+      bathroom_withTrash_20: -5977713807930376524
+      bathroom_withTrash_21: -2550393155997384384
+      bathroom_withTrash_22: -8389471167615984875
+      bathroom_withTrash_23: 2614190755726966756
+      bathroom_withTrash_24: -617956516282985788
+      bathroom_withTrash_3: 2277633102104208424
+      bathroom_withTrash_4: 6469444086539157724
+      bathroom_withTrash_5: -827912467770122304
+      bathroom_withTrash_6: -6571675875775474935
+      bathroom_withTrash_7: -3650556286798393667
+      bathroom_withTrash_8: -4994042213272890086
+      bathroom_withTrash_9: -796886195248052083
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
