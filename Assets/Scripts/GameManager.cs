@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -138,4 +139,5 @@ public class GameManager : MonoBehaviour
         Debug.Log("HAI COMPLETATO TUTTI I TASK! VITTORIA!");
         // SceneManager.LoadScene("ScenaVittoria");
     }
+
 }
