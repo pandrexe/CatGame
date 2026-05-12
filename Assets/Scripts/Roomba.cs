@@ -124,17 +124,23 @@ public class RoombaEnemy : MonoBehaviour
     {
         if (audioSource == null || target == null) return;
 
+        // Se siamo in un QUALSIASI minigioco, il Roomba reale nel salotto si zittisce
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
         {
-            audioSource.volume = 1f;
+            audioSource.volume = 0f;
             return;
         }
+
+        // Se siamo in esplorazione libera, funziona normalmente
         float distance = Vector2.Distance(transform.position, target.position);
         if (distance < soundDistance && distance > 0)
         {
             audioSource.volume = Mathf.Clamp(volumeValueChanger / distance, 0f, 1f);
         }
-        else audioSource.volume = 0f;
+        else
+        {
+            audioSource.volume = 0f;
+        }
     }
 
     public void SpegnimentoDefinitivo()
