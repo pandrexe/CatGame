@@ -39,7 +39,7 @@ public class RoombaMinigame : MonoBehaviour
 
         // Il minigioco capisce che è il SUO turno controllando se la telecamera è arrivata da lui
         bool stiamoGiocando = GameManager.Instance != null && GameManager.Instance.inMinigioco;
-        bool telecameraVicina = Vector2.Distance(transform.position, Camera.main.transform.position) < 20f;
+        bool telecameraVicina = Vector2.Distance(transform.position, Camera.main.transform.position) < 5f;
 
         // SE siamo nel minigioco E la telecamera è sul Roomba -> ACCENDI L'AUDIO!
         if (stiamoGiocando && telecameraVicina)
