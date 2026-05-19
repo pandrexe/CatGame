@@ -219,6 +219,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1792719321977928064, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15933383
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792719321977928064, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.30000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792719321977928064, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.4046667
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300392642937833804, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Size.y
+      value: 0.26696393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300392642937833804, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.132026
+      objectReference: {fileID: 0}
     - target: {fileID: 2605031168531986333, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -259,9 +279,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3032284765481812350, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Size.y
+      value: 0.19110686
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032284765481812350, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.3305534
+      objectReference: {fileID: 0}
     - target: {fileID: 6975624068137114930, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
       propertyPath: m_Name
       value: Room_Bedroom_ROOT
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252447077653903167, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Size.y
+      value: 0.14918482
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252447077653903167, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.1495922
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
