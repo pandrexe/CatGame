@@ -202,13 +202,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walls_background_3
+      name: porta_marronee
       rect:
         serializedVersion: 2
-        x: 99
-        y: 79
-        width: 26
-        height: 46
+        x: 100
+        y: 80
+        width: 24
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,13 +356,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walls_background_10
+      name: porta_grigiaa
       rect:
         serializedVersion: 2
-        x: 99
-        y: 31
-        width: 26
-        height: 46
+        x: 100
+        y: 32
+        width: 24
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -421,6 +421,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: orta_grigia
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 31
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2844a0eb58e04cbda5f15de639fc3a4
+      internalID: 45869352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: porta_marrone
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 80
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3a4301b85ed4a7e80facbcf8dc2274
+      internalID: -1311070022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -435,13 +479,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      orta_grigia: 45869352
+      porta_grigiaa: -5313510609803263113
+      porta_marrone: -1311070022
+      porta_marronee: -1131893946382586079
       walls_background_0: 5498706329641531868
       walls_background_1: 3821249885648137999
-      walls_background_10: -5313510609803263113
       walls_background_11: 594799258758046901
       walls_background_12: -2044212410655318211
       walls_background_2: 466777764562513879
-      walls_background_3: -1131893946382586079
       walls_background_4: -3328405160708461573
       walls_background_5: -5241920156988872964
       walls_background_6: 5267815765634237176
