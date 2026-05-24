@@ -32,6 +32,16 @@ public class RoombaEnemy : MonoBehaviour
 
         if (isCatOnTop)
         {
+            // --- NOVITÀ: IL BLOCCO MINIGIOCO ---
+            // Se il gatto è sopra di te e il minigioco è iniziato, fermati immediatamente!
+            if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                VolumeChanger(); // Aggiorna comunque il volume (per spegnerlo)
+                return; // Il "return" fa saltare tutto il codice qui sotto, impedendo al Roomba di muoversi
+            }
+            // ------------------------------------
+
             if (isGrounded)
             {
                 moveTimer -= Time.deltaTime;
