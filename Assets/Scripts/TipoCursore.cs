@@ -4,5 +4,6 @@ public enum TipoCursore
 {
     Nessuno,
     Singola,
-    Doppia
+    Doppia,
+    SingolaColtello
 }

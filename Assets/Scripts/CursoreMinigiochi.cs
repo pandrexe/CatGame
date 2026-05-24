@@ -8,14 +8,14 @@ public class MinigameCursor : MonoBehaviour
     [Header("I Contenitori")]
     public GameObject contenitoreSingola;
     public GameObject contenitoreDoppia;
-    public GameObject contenitoreColtello; // Il contenitore con zampa + coltello
+    public GameObject contenitoreColtello;
 
     [Header("Riferimenti Zampe")]
-    public Transform zampaSx; 
-    public Transform zampaDx; 
+    public Transform zampaSx;
+    public Transform zampaDx;
 
     [Header("Riferimenti Coltello")]
-    public Transform puntaColtello; // Il punto esatto da cui esce il sapone
+    public Transform puntaColtello;
 
     [Header("Fisica (Per il Roomba)")]
     public Collider2D colliderSingola;
@@ -43,23 +43,24 @@ public class MinigameCursor : MonoBehaviour
 
         Cursor.visible = false;
 
-        // Accendiamo il contenitore giusto in base al tipo
+        // --- LA GESTIONE PULITA DEI CURSORI ---
         if (tipoAttuale == TipoCursore.Singola)
         {
-            // Se il coltello e assegnato, diamo priorita al coltello, altrimenti alla zampa singola
-            if (contenitoreColtello != null)
-            {
-                if (!contenitoreColtello.activeSelf) contenitoreColtello.SetActive(true);
-                if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
-            }
-            else if (contenitoreSingola != null && !contenitoreSingola.activeSelf)
-            {
-                contenitoreSingola.SetActive(true);
-            }
+            if (contenitoreSingola != null && !contenitoreSingola.activeSelf) contenitoreSingola.SetActive(true);
+            if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
+            if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
         }
-        else if (tipoAttuale == TipoCursore.Doppia && !contenitoreDoppia.activeSelf)
+        else if (tipoAttuale == TipoCursore.SingolaColtello) // IL NUOVO STATO!
         {
-            contenitoreDoppia.SetActive(true);
+            if (contenitoreColtello != null && !contenitoreColtello.activeSelf) contenitoreColtello.SetActive(true);
+            if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
+            if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
+        }
+        else if (tipoAttuale == TipoCursore.Doppia)
+        {
+            if (contenitoreDoppia != null && !contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(true);
+            if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
+            if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
         }
 
         // Segue il mouse
@@ -70,7 +71,7 @@ public class MinigameCursor : MonoBehaviour
 
         rb.MovePosition(worldPos);
 
-        // Fisica per il Roomba
+        // Fisica per il Roomba (funziona solo con la zampa singola standard)
         if (tipoAttuale == TipoCursore.Singola && colliderSingola != null && contenitoreSingola.activeSelf)
         {
             colliderSingola.enabled = Input.GetMouseButton(0);
