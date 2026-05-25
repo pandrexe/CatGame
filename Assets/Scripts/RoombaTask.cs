@@ -13,55 +13,58 @@ public class RoombaMinigame : MonoBehaviour
     public AudioClip suonoAspirapolvere;
     public AudioClip suonoSpegnimento;
 
-    private AudioSource audioSource;
+    [Header("Riferimento Manager (Obbligatorio)")]
+    public InteractableTask taskManager;
+
+    // --- LA TUA IDEA: DUE "CASSE ACUSTICHE" SEPARATE ---
+    private AudioSource sourceLoop; // Cassa per il rumore continuo
+    private AudioSource sourceSFX;  // Cassa per i suoni singoli
+    
     private SpriteRenderer spriteRenderer;
     private bool giaSpento = false;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        spriteRenderer.sprite = spriteAcceso;
-
-        // Impostiamo l'audio ma NON LO FACCIAMO PARTIRE QUI!
+        
+        // 1. Creiamo e impostiamo la cassa per il LOOP
+        sourceLoop = gameObject.AddComponent<AudioSource>();
+        sourceLoop.playOnAwake = false; 
         if (suonoAspirapolvere != null)
         {
-            audioSource.clip = suonoAspirapolvere;
-            audioSource.loop = true;
-            audioSource.volume = 1f;
+            sourceLoop.clip = suonoAspirapolvere;
+            sourceLoop.loop = true;
+            sourceLoop.volume = 1f; 
         }
+
+        // 2. Creiamo e impostiamo la cassa per gli SFX (suoni singoli)
+        sourceSFX = gameObject.AddComponent<AudioSource>();
+        sourceSFX.playOnAwake = false;
+        sourceSFX.loop = false; // Questa non deve mai looppare
+        sourceSFX.volume = 1f;
+        
+        spriteRenderer.sprite = spriteAcceso;
     }
 
-    void Update()
+    void OnEnable()
     {
-        // Se Ë gi‡ stato spento o manca la clip, si ferma
-        if (giaSpento || audioSource.clip == null) return;
-
-        // Il minigioco capisce che Ë il SUO turno controllando se la telecamera Ë arrivata da lui
-        bool stiamoGiocando = GameManager.Instance != null && GameManager.Instance.inMinigioco;
-        bool telecameraVicina = Vector2.Distance(transform.position, Camera.main.transform.position) < 5f;
-
-        // SE siamo nel minigioco E la telecamera Ë sul Roomba -> ACCENDI L'AUDIO!
-        if (stiamoGiocando && telecameraVicina)
+        // Accendiamo solo la cassa del loop!
+        if (!giaSpento && sourceLoop != null && sourceLoop.clip != null && !sourceLoop.isPlaying)
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
-        // ALTRIMENTI (Siamo in giro per casa o in un altro minigioco) -> SPEGNI L'AUDIO!
-        else
-        {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
+            sourceLoop.Play();
         }
     }
+
+      void OnDisable()
+    {
+        // Spegniamo SOLO l'aspirapolvere in loop. 
+        // NON tocchiamo sourceSFX, cos√¨ il "clack" pu√≤ finire di suonare anche se lo script √® spento!
+        if (sourceLoop != null && sourceLoop.isPlaying) sourceLoop.Stop();
+    }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.Instance != null && !GameManager.Instance.inMinigioco) return;
         if (giaSpento) return;
 
         giaSpento = true;
@@ -70,15 +73,24 @@ public class RoombaMinigame : MonoBehaviour
         StartCoroutine(ConcludiMinigioco());
     }
 
+ 
     private IEnumerator ConcludiMinigioco()
     {
-        yield return new WaitForSeconds(1f);
-        // Quando lo colpisci, stoppa il rumore dell'aspirapolvere e fai partire lo schiaffo
-        audioSource.Stop();
-        if (suonoSpegnimento != null) audioSource.PlayOneShot(suonoSpegnimento);
-
+        // Piccola pausa solo per far capire che hai colpito il tasto
+        yield return new WaitForSeconds(0.5f);
         
+        // 1. Spegniamo il rumore continuo
+        if (sourceLoop != null) sourceLoop.Stop();
+        
+        // 2. Spara il suono dello spegnimento
+        if (suonoSpegnimento != null && sourceSFX != null)
+        {
+            sourceSFX.PlayOneShot(suonoSpegnimento);
+        }
 
-        GameManager.Instance.VinciMinigioco();
+        // 3. ZERO ATTESA! Chiudiamo istantaneamente il minigioco.
+        // Lo script si spegner√†, ma la "cassa acustica SFX" continuer√† a suonare per i fatti suoi.
+        if (taskManager != null) taskManager.CompletaTask();
+        if (GameManager.Instance != null) GameManager.Instance.VinciMinigioco();
     }
 }

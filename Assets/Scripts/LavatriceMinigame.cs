@@ -4,31 +4,24 @@ public class TastoLavatriceTask : MonoBehaviour
 {
     [Header("Riferimenti")]
     public Collider2D colliderTasto;
-    public InteractableTask taskLavatrice; // Cambiato: Punta all'InteractableTask del figlio!
+    public InteractableTask taskLavatrice; 
 
     private bool taskFinito = false;
 
     void Update()
     {
-        if (GameManager.Instance == null || !GameManager.Instance.inMinigioco || taskFinito)
-            return;
+        // Tolto tutto il papiro di controlli! Se siamo qui, il task è attivo.
+        if (taskFinito) return;
 
-        // Click del mouse
         if (Input.GetMouseButtonDown(0))
         {
-            // ORA CONTROLLIAMO LA ZAMPA SINGOLA, NON LA SX!
             if (MinigameCursor.Instance != null && MinigameCursor.Instance.contenitoreSingola != null)
             {
-                // Prendiamo la posizione della Zampa Singola
                 Vector2 posZampa = MinigameCursor.Instance.contenitoreSingola.transform.position;
 
                 if (colliderTasto != null && colliderTasto.OverlapPoint(posZampa))
                 {
                     PremiTasto();
-                }
-                else
-                {
-                    Debug.Log("Cliccato, ma fuori dal tasto!");
                 }
             }
         }
@@ -38,13 +31,11 @@ public class TastoLavatriceTask : MonoBehaviour
     {
         taskFinito = true;
 
-        // 1. Diciamo al task di completarsi (Questo attiver� AUTOMATICAMENTE il UnityEvent!)
         if (taskLavatrice != null)
         {
-            taskLavatrice.CompletaTask();
+            taskLavatrice.CompletaTask(); // Questo spegnerà automaticamente questo script!
         }
 
-        // 2. Diciamo al GameManager di chiudere il minigioco e rimettere la telecamera sul gatto
         if (GameManager.Instance != null)
         {
             GameManager.Instance.VinciMinigioco();

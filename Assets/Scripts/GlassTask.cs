@@ -13,6 +13,9 @@ public class GlassMinigame : MonoBehaviour
     public AudioClip suonoRottura;
     public AudioClip suonoBotto;
 
+    [Header("Riferimento Manager (Obbligatorio)")]
+    public InteractableTask taskManager;
+
     private bool giaCaduto = false;
     private AudioSource audioSource;
     private float posizioneInizialeX;
@@ -27,12 +30,10 @@ public class GlassMinigame : MonoBehaviour
     void Update()
     {
         if (giaCaduto) return;
-        if (GameManager.Instance != null && !GameManager.Instance.inMinigioco) return;
 
         float limiteVeroDestra = posizioneInizialeX + distanzaCadutaDestra;
         float limiteVeroSinistra = posizioneInizialeX - distanzaCadutaSinistra;
 
-        // Cade = Vittoria! Non c'è più il fallimento del pavimento
         if (transform.position.x > limiteVeroDestra || transform.position.x < limiteVeroSinistra)
         {
             giaCaduto = true;
@@ -51,6 +52,8 @@ public class GlassMinigame : MonoBehaviour
         if (suonoRottura != null) audioSource.PlayOneShot(suonoRottura);
 
         yield return new WaitForSeconds(1f);
+        
+        if (taskManager != null) taskManager.CompletaTask();
         GameManager.Instance.VinciMinigioco();
     }
 }

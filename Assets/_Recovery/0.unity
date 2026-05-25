@@ -198,17 +198,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &95803521 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5900295379899588644, guid: 34183bf6961955d4db6bed95c3cd8905, type: 3}
-  m_PrefabInstance: {fileID: 3067687423207359445}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89e36e8a0514724ea02add8a18b0dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableTask
 --- !u!1 &96746355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,17 +998,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6383678102754550587, guid: 1c0f5a0db97ea0b418c092605c61325f, type: 3}
   m_PrefabInstance: {fileID: 5746729219309392386}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &293888211 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8447432668383880750, guid: 0276efb498c14284180619a5daa5e191, type: 3}
-  m_PrefabInstance: {fileID: 8008038679329289752}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89e36e8a0514724ea02add8a18b0dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableTask
 --- !u!1 &302192845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565961864}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57a00d8eeebbca24aa34ab4525c51b80, type: 3}
   m_Name: 
@@ -4536,17 +4514,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 21.403381, y: 4.931259}
   m_EdgeRadius: 0
---- !u!114 &749879067 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6937002174353975943, guid: 0276efb498c14284180619a5daa5e191, type: 3}
-  m_PrefabInstance: {fileID: 8008038679329289752}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89e36e8a0514724ea02add8a18b0dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableTask
 --- !u!1 &759947988
 GameObject:
   m_ObjectHideFlags: 0
@@ -5991,7 +5958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993276625}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff919beefd777d4899073475afbfd64, type: 3}
   m_Name: 
@@ -6000,7 +5967,6 @@ MonoBehaviour:
   distanzaCadutaSinistra: 2.71
   suonoRottura: {fileID: 8300000, guid: a5992d9c33f783942bb63bc8759bf6e9, type: 3}
   suonoBotto: {fileID: 0}
-  taskManager: {fileID: 749879067}
 --- !u!61 &993276631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6541,7 +6507,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170122654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97591ed69cd6d9b42afb26a63cbc31e0, type: 3}
   m_Name: 
@@ -6549,7 +6515,6 @@ MonoBehaviour:
   spriteSacco: {fileID: 822830359}
   colliderSacco: {fileID: 822830358}
   puntoUscita: {fileID: 582443693}
-  taskManager: {fileID: 95803521}
   velocitaTrascinamento: 1
 --- !u!1 &1172473410
 GameObject:
@@ -8474,7 +8439,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409177884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ea5adfee7e9f435db6c58f2236a111b, type: 3}
   m_Name: 
@@ -8482,7 +8447,6 @@ MonoBehaviour:
   coloreCrema: {r: 0, g: 1, b: 0, a: 1}
   raggioPennello: 15
   percentualePerVincere: 0.85
-  taskManager: {fileID: 1496442592}
 --- !u!212 &1409177887
 SpriteRenderer:
   serializedVersion: 2
@@ -10561,7 +10525,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754230798}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb69fbdad8161344936d0f329c6869b, type: 3}
   m_Name: 
@@ -10570,7 +10534,6 @@ MonoBehaviour:
   spriteSpento: {fileID: -7238138825501904900, guid: e9786b15cc4d2944e8ad07d881e9c651, type: 3}
   suonoAspirapolvere: {fileID: 8300000, guid: 358703250b780164891148fe1a371d99, type: 3}
   suonoSpegnimento: {fileID: 8300000, guid: 3f58b85604c9f8e4a9aae3c9451abf31, type: 3}
-  taskManager: {fileID: 293888211}
 --- !u!50 &1754230803
 Rigidbody2D:
   serializedVersion: 5
@@ -10734,7 +10697,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794407076}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d79a623986d44df4adaeaccbca44492, type: 3}
   m_Name: 
@@ -10742,7 +10705,6 @@ MonoBehaviour:
   spriteCartaGigante: {fileID: 2014765011}
   colliderCarta: {fileID: 2014765013}
   puntoDistacco: {fileID: 2029725192}
-  taskManager: {fileID: 2008112066}
   velocitaTrascinamento: 1
 --- !u!4 &1805126714 stripped
 Transform:
@@ -11170,7 +11132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882452829}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25bdecfd395a98c4c94636a154ad563e, type: 3}
   m_Name: 
@@ -12219,17 +12181,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2008112066 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1005103367893853765, guid: 1c0f5a0db97ea0b418c092605c61325f, type: 3}
-  m_PrefabInstance: {fileID: 5746729219309392386}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89e36e8a0514724ea02add8a18b0dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableTask
 --- !u!1 &2012922816
 GameObject:
   m_ObjectHideFlags: 0
@@ -14169,10 +14120,6 @@ PrefabInstance:
       value: -4.462
       objectReference: {fileID: 0}
     - target: {fileID: 5900295379899588644, guid: 34183bf6961955d4db6bed95c3cd8905, type: 3}
-      propertyPath: scriptDelTask
-      value: 
-      objectReference: {fileID: 1170122656}
-    - target: {fileID: 5900295379899588644, guid: 34183bf6961955d4db6bed95c3cd8905, type: 3}
       propertyPath: testoInterazioneUI
       value: 
       objectReference: {fileID: 670545269}
@@ -14414,10 +14361,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.065
       objectReference: {fileID: 0}
-    - target: {fileID: 1005103367893853765, guid: 1c0f5a0db97ea0b418c092605c61325f, type: 3}
-      propertyPath: scriptDelTask
-      value: 
-      objectReference: {fileID: 1794407079}
     - target: {fileID: 1005103367893853765, guid: 1c0f5a0db97ea0b418c092605c61325f, type: 3}
       propertyPath: testoInterazioneUI
       value: 
@@ -14935,10 +14878,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2352712020285626060, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
-      propertyPath: scriptDelTask
-      value: 
-      objectReference: {fileID: 1882452831}
-    - target: {fileID: 2352712020285626060, guid: 521ccebfdefc08b46a4edb8b7b418c65, type: 3}
       propertyPath: testoInterazioneUI
       value: 
       objectReference: {fileID: 670545269}
@@ -15097,10 +15036,6 @@ PrefabInstance:
       value: 0.16106884
       objectReference: {fileID: 0}
     - target: {fileID: 6937002174353975943, guid: 0276efb498c14284180619a5daa5e191, type: 3}
-      propertyPath: scriptDelTask
-      value: 
-      objectReference: {fileID: 993276630}
-    - target: {fileID: 6937002174353975943, guid: 0276efb498c14284180619a5daa5e191, type: 3}
       propertyPath: testoInterazioneUI
       value: 
       objectReference: {fileID: 670545269}
@@ -15116,10 +15051,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8447432668383880750, guid: 0276efb498c14284180619a5daa5e191, type: 3}
-      propertyPath: scriptDelTask
-      value: 
-      objectReference: {fileID: 1754230802}
     - target: {fileID: 8447432668383880750, guid: 0276efb498c14284180619a5daa5e191, type: 3}
       propertyPath: testoInterazioneUI
       value: 
