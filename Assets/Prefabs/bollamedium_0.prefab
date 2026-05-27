@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1597929124297355237, guid: 48308aaa52c8d6841a30f0ab6f4705d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144,3 +144,5 @@ MonoBehaviour:
   velocitaSalita: 1.38
   ampiezzaZigZag: 0.1
   frequenzaZigZag: 1.76
+  distanzaSbalzo: 2
+  durataStun: 0.5
