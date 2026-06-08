@@ -3,15 +3,14 @@ public enum TaskType
 {
         Nessuno,
         SpegniAspirapolvere,
-        RompiVaso,
+        RovinaColazione,
         SrotolaCartaIgienica,
         GraffiaDivano,
         AbbattiBicchiere,
-        ToccaLaser,
         SuonaPianoforte,
         FaiCanestro,
-        FaiBirdWatching,
-        FaiIlPane,
-        FaiAmiciziaConTopo,
-        ButtaSpazzatura
+        ButtaSpazzatura,
+        TogliRuota,
+        RubaCibo,
+        VaiADormire
 }
