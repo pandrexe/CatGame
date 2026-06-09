@@ -9,6 +9,7 @@ public class MinigameCursor : MonoBehaviour
     public GameObject contenitoreSingola;
     public GameObject contenitoreDoppia;
     public GameObject contenitoreColtello;
+    public GameObject contenitoreDoppiaCentrale; // <-- NUOVO SLOT
 
     [Header("Riferimenti Zampe")]
     public Transform zampaSx;
@@ -49,18 +50,28 @@ public class MinigameCursor : MonoBehaviour
             if (contenitoreSingola != null && !contenitoreSingola.activeSelf) contenitoreSingola.SetActive(true);
             if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
             if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
+            if (contenitoreDoppiaCentrale != null && contenitoreDoppiaCentrale.activeSelf) contenitoreDoppiaCentrale.SetActive(false);
         }
-        else if (tipoAttuale == TipoCursore.SingolaColtello) // IL NUOVO STATO!
+        else if (tipoAttuale == TipoCursore.SingolaColtello)
         {
             if (contenitoreColtello != null && !contenitoreColtello.activeSelf) contenitoreColtello.SetActive(true);
             if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
             if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
+            if (contenitoreDoppiaCentrale != null && contenitoreDoppiaCentrale.activeSelf) contenitoreDoppiaCentrale.SetActive(false);
         }
         else if (tipoAttuale == TipoCursore.Doppia)
         {
             if (contenitoreDoppia != null && !contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(true);
             if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
             if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
+            if (contenitoreDoppiaCentrale != null && contenitoreDoppiaCentrale.activeSelf) contenitoreDoppiaCentrale.SetActive(false);
+        }
+        else if (tipoAttuale == TipoCursore.DoppiaCentrale) // --- IL NUOVO STATO ---
+        {
+            if (contenitoreDoppiaCentrale != null && !contenitoreDoppiaCentrale.activeSelf) contenitoreDoppiaCentrale.SetActive(true);
+            if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
+            if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
+            if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
         }
 
         // Segue il mouse
@@ -71,7 +82,6 @@ public class MinigameCursor : MonoBehaviour
 
         rb.MovePosition(worldPos);
 
-        // Fisica per il Roomba (funziona solo con la zampa singola standard)
         if (tipoAttuale == TipoCursore.Singola && colliderSingola != null && contenitoreSingola.activeSelf)
         {
             colliderSingola.enabled = Input.GetMouseButton(0);
@@ -88,5 +98,6 @@ public class MinigameCursor : MonoBehaviour
         if (contenitoreSingola != null && contenitoreSingola.activeSelf) contenitoreSingola.SetActive(false);
         if (contenitoreDoppia != null && contenitoreDoppia.activeSelf) contenitoreDoppia.SetActive(false);
         if (contenitoreColtello != null && contenitoreColtello.activeSelf) contenitoreColtello.SetActive(false);
+        if (contenitoreDoppiaCentrale != null && contenitoreDoppiaCentrale.activeSelf) contenitoreDoppiaCentrale.SetActive(false);
     }
 }

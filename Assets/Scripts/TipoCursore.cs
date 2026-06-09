@@ -5,5 +5,6 @@ public enum TipoCursore
     Nessuno,
     Singola,
     Doppia,
-    SingolaColtello
+    SingolaColtello,
+    DoppiaCentrale
 }
