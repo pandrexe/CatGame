@@ -94,6 +94,13 @@ public class BirdEnemy : MonoBehaviour
     {
         if (!enabled) return;
 
+        // --- IL BLOCCO MINIGIOCO PER L'UCCELLO ---
+        // Se sei nel minigioco delle tende, l'uccello non può farti danni!
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            return; // Interrompe la funzione: niente danni, niente knockback!
+        }
+
         if (collision.CompareTag("Player"))
         {
             if (GameManager.Instance != null)
