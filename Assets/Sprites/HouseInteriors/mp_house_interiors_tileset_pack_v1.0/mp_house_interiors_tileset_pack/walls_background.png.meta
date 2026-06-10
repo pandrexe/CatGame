@@ -139,10 +139,10 @@ TextureImporter:
       name: walls_background_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 143
-        width: 290
-        height: 306
+        x: 160
+        y: 384
+        width: 48
+        height: 61
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
