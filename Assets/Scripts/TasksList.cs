@@ -2,7 +2,7 @@
 public enum TaskType
 {
         Nessuno,
-        SpegniAspirapolvere,
+        InstallaVirus,
         RovinaColazione,
         SrotolaCartaIgienica,
         GraffiaDivano,

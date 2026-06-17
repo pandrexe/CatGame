@@ -30,8 +30,7 @@ public class PitchforkEnemy : MonoBehaviour
 
     void Update()
     {
-        // Ora controlliamo solo se il gatto esiste e se non siamo in pausa menu
-        // Rimosso il controllo inMinigioco per permettere l'attacco continuo
+        // Continua a muoversi anche durante i minigiochi per fare scena!
         if (gatto == null || Time.timeScale == 0)
             return;
 
@@ -87,18 +86,21 @@ public class PitchforkEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // --- IL BLOCCO MINIGIOCO ---
+        // Se siamo in un minigioco, la forca ignora tutto: niente danni e niente knockback!
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            return;
+        }
+
         if (collision.CompareTag("Player") && staAttaccando)
         {
             GameManager.Instance.PerdiVita();
 
-            if (GameManager.Instance != null && !GameManager.Instance.inMinigioco)
+            PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
+            if (scriptGatto != null)
             {
-                PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
-                if (scriptGatto != null)
-                {
-                    // IL NEMICO CHIAMA UNA SOLA RIGA!
-                    scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, durataStordimento);
-                }
+                scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, durataStordimento);
             }
         }
     }
