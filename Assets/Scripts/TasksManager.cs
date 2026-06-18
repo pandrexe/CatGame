@@ -31,6 +31,9 @@ public class TaskManager : MonoBehaviour
             if (task.tipoDiTask != TaskType.Nessuno)
             {
                 numeroTotaleTask++; // Lo aggiungiamo al totale della run solo se è valido!
+
+                // --- RIGA AGGIUNTA PER TROVARE L'INTRUSO ---
+                Debug.Log($"Task #{numeroTotaleTask} contato: '{task.gameObject.name}' (Tipo: {task.tipoDiTask})");
             }
             else
             {
