@@ -12,17 +12,28 @@ public class GuitarSpawner : MonoBehaviour
 
     [Header("Audio")]
     [Tooltip("Inserisci qui il suono della chitarra che spara")]
-    public AudioClip suonoSparo; // <--- ECCO LA TUA CLIP AUDIO
+    public AudioClip suonoSparo;
 
     private Transform gatto;
     private float timerSparo = 0f;
     private AudioSource audioSource;
 
+    // --- IL LUCCHETTO ---
+    private bool eMortoDefinitivamente = false;
+
     void Awake()
     {
-        // Generiamo in automatico la "cassa acustica" sulla chitarra all'avvio
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+    }
+
+    // --- INTERCETTA IL ROOM TRIGGER ---
+    void OnEnable()
+    {
+        if (eMortoDefinitivamente)
+        {
+            this.enabled = false; // Se la spina è staccata, si rifiuta di riaccendersi!
+        }
     }
 
     void Start()
@@ -35,7 +46,6 @@ public class GuitarSpawner : MonoBehaviour
 
     void Update()
     {
-        // Se siamo in un minigioco o il gatto non esiste, la chitarra smette di sparare
         if (gatto == null || (GameManager.Instance != null && GameManager.Instance.inMinigioco))
             return;
 
@@ -44,7 +54,7 @@ public class GuitarSpawner : MonoBehaviour
         if (timerSparo >= tempoTraGliSpari)
         {
             SparaNota();
-            timerSparo = 0f; // Resetta il timer
+            timerSparo = 0f;
         }
     }
 
@@ -56,24 +66,25 @@ public class GuitarSpawner : MonoBehaviour
             return;
         }
 
-        // --- RIPRODUZIONE AUDIO ---
-        // Se hai assegnato un suono, fallo partire!
         if (suonoSparo != null && audioSource != null)
         {
             audioSource.PlayOneShot(suonoSparo);
         }
 
-        // 1. Calcola la direzione verso il gatto
         Vector2 direzioneVersoGatto = gatto.position - transform.position;
-
-        // 2. Genera la nota
         GameObject nuovaNota = Instantiate(prefabNota, transform.position, Quaternion.identity);
 
-        // 3. Passa direzione e velocità alla nota
         MusicNote scriptNota = nuovaNota.GetComponent<MusicNote>();
         if (scriptNota != null)
         {
             scriptNota.InizializzaNota(direzioneVersoGatto, velocitaNota);
         }
+    }
+
+    // --- LA FUNZIONE DA CHIAMARE ALLA VITTORIA ---
+    public void SpegnimentoDefinitivo()
+    {
+        eMortoDefinitivamente = true;
+        this.enabled = false;
     }
 }

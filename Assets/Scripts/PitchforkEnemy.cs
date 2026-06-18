@@ -19,6 +19,9 @@ public class PitchforkEnemy : MonoBehaviour
     private bool staTornando = false;
     private bool staTremando = false;
 
+    // --- IL LUCCHETTO ---
+    private bool eMortoDefinitivamente = false;
+
     void Start()
     {
         startY = transform.position.y;
@@ -28,9 +31,17 @@ public class PitchforkEnemy : MonoBehaviour
         }
     }
 
+    // --- INTERCETTA IL ROOM TRIGGER ---
+    void OnEnable()
+    {
+        if (eMortoDefinitivamente)
+        {
+            this.enabled = false; // Se è morto, si rifiuta di riaccendersi!
+        }
+    }
+
     void Update()
     {
-        // Continua a muoversi anche durante i minigiochi per fare scena!
         if (gatto == null || Time.timeScale == 0)
             return;
 
@@ -86,8 +97,6 @@ public class PitchforkEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // --- IL BLOCCO MINIGIOCO ---
-        // Se siamo in un minigioco, la forca ignora tutto: niente danni e niente knockback!
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
         {
             return;
@@ -103,5 +112,12 @@ public class PitchforkEnemy : MonoBehaviour
                 scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, durataStordimento);
             }
         }
+    }
+
+    // --- LA FUNZIONE DA CHIAMARE ALLA VITTORIA ---
+    public void SpegnimentoDefinitivo()
+    {
+        eMortoDefinitivamente = true;
+        this.enabled = false;
     }
 }
