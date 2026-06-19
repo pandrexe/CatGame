@@ -48,7 +48,14 @@ public class GameManager : MonoBehaviour
             telecameraGatto.Priority = 10;
         }
         inMinigioco = false;
+
+        if (LivesUI.Instance != null)
+        {
+            LivesUI.Instance.AggiornaCuoriGrafica();
+        }
     }
+
+    
 
     public void IniziaMinigioco(CinemachineCamera telecameraMinigioco, InteractableTask taskCheHaIniziato)
     {
@@ -77,6 +84,12 @@ public class GameManager : MonoBehaviour
 
         viteAttuali--;
         Debug.Log($"Vite rimaste: {viteAttuali}");
+
+        // --- NUOVA RIGA: Diciamo alla grafica dei cuori di aggiornarsi immediatamente!
+        if (LivesUI.Instance != null)
+        {
+            LivesUI.Instance.AggiornaCuoriGrafica();
+        }
 
         if (viteAttuali <= 0)
         {

@@ -30,14 +30,14 @@ public class TaskManager : MonoBehaviour
         {
             if (task.tipoDiTask != TaskType.Nessuno)
             {
-                numeroTotaleTask++; // Lo aggiungiamo al totale della run solo se è valido!
+                numeroTotaleTask++; // Lo aggiungiamo al totale della run solo se ï¿½ valido!
 
                 // --- RIGA AGGIUNTA PER TROVARE L'INTRUSO ---
                 Debug.Log($"Task #{numeroTotaleTask} contato: '{task.gameObject.name}' (Tipo: {task.tipoDiTask})");
             }
             else
             {
-                Debug.Log($"[TaskManager] Ignorato l'oggetto '{task.gameObject.name}' perché impostato su TaskType.Nessuno");
+                Debug.Log($"[TaskManager] Ignorato l'oggetto '{task.gameObject.name}' perchï¿½ impostato su TaskType.Nessuno");
             }
         }
 
@@ -56,12 +56,11 @@ public class TaskManager : MonoBehaviour
 
             Debug.Log($"Task completato: {taskSvolto} ({taskCompletati}/{numeroTotaleTask})");
 
-            // Ricordati che abbiamo tolto la vittoria automatica da qui!
-            // Ora si vince solo convalidando la run dal Letto (BedInteraction)
+           if (TasksUI.Instance != null) TasksUI.Instance.SegnalaCompletamentoUI(taskSvolto);
         }
     }
 
-    // Questa funzione verrà usata dal tuo BedInteraction per capire se la run è valida
+    // Questa funzione verrï¿½ usata dal tuo BedInteraction per capire se la run ï¿½ valida
     public bool ControllaSeTuttoFinito()
     {
         return taskCompletati >= numeroTotaleTask;
