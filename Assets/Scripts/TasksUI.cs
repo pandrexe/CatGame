@@ -1,19 +1,23 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class TasksUI : MonoBehaviour
 {
     public static TasksUI Instance;
 
-    public TextMeshProUGUI testoContatore; 
-    public GameObject pannelloLista; 
-    public TextMeshProUGUI testoListaCompleta; 
+    public TextMeshProUGUI testoContatore;
+    public GameObject pannelloLista;
+    public TextMeshProUGUI testoListaCompleta;
 
-    public KeyCode tastoPerAprireLista = KeyCode.Return;
+    public KeyCode tastoPerAprireLista = KeyCode.Tab;
 
     private List<TaskType> taskDaFare = new List<TaskType>();
     private List<TaskType> taskCompletati = new List<TaskType>();
+
+    private bool introInCorso = true;
+    private CanvasGroup gruppoCanvasLista;
 
     void Awake()
     {
@@ -22,14 +26,25 @@ public class TasksUI : MonoBehaviour
 
     void Start()
     {
-        if (pannelloLista != null) pannelloLista.SetActive(false); 
-        
+        if (pannelloLista != null)
+        {
+            gruppoCanvasLista = pannelloLista.GetComponent<CanvasGroup>();
+            if (gruppoCanvasLista == null)
+            {
+                gruppoCanvasLista = pannelloLista.AddComponent<CanvasGroup>();
+            }
+        }
+
         TrovaTuttiITask();
         AggiornaGrafica();
+
+        StartCoroutine(IntroListaTask());
     }
 
     void Update()
     {
+        if (Time.timeScale == 0f || introInCorso) return;
+
         if (Input.GetKeyDown(tastoPerAprireLista))
         {
             if (pannelloLista != null)
@@ -39,13 +54,44 @@ public class TasksUI : MonoBehaviour
         }
     }
 
+    private IEnumerator IntroListaTask()
+    {
+        introInCorso = true;
+
+        if (pannelloLista != null && gruppoCanvasLista != null)
+        {
+            pannelloLista.SetActive(true);
+            gruppoCanvasLista.alpha = 1f;
+
+            yield return new WaitForSeconds(2f);
+
+            float durataSfumo = 2.5f;
+            float timerSfumo = 0f;
+
+            while (timerSfumo < durataSfumo)
+            {
+                timerSfumo += Time.deltaTime;
+                gruppoCanvasLista.alpha = Mathf.Lerp(1f, 0f, timerSfumo / durataSfumo);
+                yield return null;
+            }
+
+            pannelloLista.SetActive(false);
+            gruppoCanvasLista.alpha = 1f;
+        }
+
+        introInCorso = false;
+    }
+
     private void TrovaTuttiITask()
     {
         InteractableTask[] tuttiI_Task = Object.FindObjectsByType<InteractableTask>(FindObjectsSortMode.None);
 
         foreach (InteractableTask task in tuttiI_Task)
         {
-            if (task.tipoDiTask != TaskType.Nessuno && !taskDaFare.Contains(task.tipoDiTask))
+            // --- MODIFICA: ESCLUDIAMO VAI A DORMIRE DALLA LISTA INIZIALE ---
+            if (task.tipoDiTask != TaskType.Nessuno &&
+                task.tipoDiTask != TaskType.VaiADormire &&
+                !taskDaFare.Contains(task.tipoDiTask))
             {
                 taskDaFare.Add(task.tipoDiTask);
             }
@@ -63,21 +109,14 @@ public class TasksUI : MonoBehaviour
 
     private void AggiornaGrafica()
     {
-        // 1. Aggiorniamo il numero totale in alto
-        if (testoContatore != null)
-        {
-            int taskMancanti = taskDaFare.Count - taskCompletati.Count;
-            testoContatore.text = $"Tasks to do: {taskMancanti}";
-        }
+        string testoFinale = "";
+        int taskMancanti = taskDaFare.Count - taskCompletati.Count;
 
-        // 2. Costruiamo la lista testuale nascondendo quelli fatti
+        // Costruiamo la lista testuale nascondendo quelli fatti
         if (testoListaCompleta != null)
         {
-            string testoFinale = "";
-
             foreach (TaskType tipo in taskDaFare)
             {
-                // Se il task NON è completato, lo aggiungiamo alla scritta a schermo
                 if (!taskCompletati.Contains(tipo))
                 {
                     string nomeCarino = FormattaNomeTask(tipo);
@@ -85,13 +124,21 @@ public class TasksUI : MonoBehaviour
                 }
             }
 
-            // Chicca: se la lista è vuota (tutto completato), mostriamo un messaggio di vittoria
+            // --- LA MAGIA FINALE ---
+            // Se la lista è vuota (hai finito i 10 task), facciamo apparire la missione finale!
             if (testoFinale == "")
             {
-                testoFinale = "All tasks completed!";
+                testoFinale = "- Go to sleep\n";
+                taskMancanti = 1; // Forziamo il contatore a 1 per logica visiva
             }
 
             testoListaCompleta.text = testoFinale;
+        }
+
+        // Aggiorniamo il numero totale in alto
+        if (testoContatore != null)
+        {
+            testoContatore.text = $"Tasks to do: {taskMancanti}";
         }
     }
 
@@ -102,7 +149,7 @@ public class TasksUI : MonoBehaviour
         switch (nomeEnum)
         {
             case "InstallaVirus":
-            case "InstallVirus": 
+            case "InstallVirus":
                 return "Install the virus on the PC";
 
             case "RovinaColazione":
@@ -152,7 +199,7 @@ public class TasksUI : MonoBehaviour
             case "Sleep":
                 return "Go to sleep";
 
-            default: 
+            default:
                 return nomeEnum;
         }
     }

@@ -8,16 +8,17 @@ public class TabsController : MonoBehaviour
 
     private int currentTabIndex;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentTabIndex = 0;
         ActivateTab(0);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // --- FILTRO: Questo script deve ascoltare il TAB *SOLO* se il gioco è in pausa! ---
+        if (Time.timeScale != 0f) return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             int nextIndex = (currentTabIndex + 1) % pages.Length;
@@ -31,7 +32,7 @@ public class TabsController : MonoBehaviour
         for (int i = 0; i < pages.Length; i++)
         {
             pages[i].SetActive(false);
-            tabImages[i].color = Color.gray; 
+            tabImages[i].color = Color.gray;
         }
         pages[index].SetActive(true);
         tabImages[index].color = Color.white;

@@ -1,8 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class BedInteraction : Interactable
 {
+    [Header("Animazione")]
+    [Tooltip("Trascina qui l'oggetto del Gatto che contiene l'Animator")]
+    public Animator gattoAnimator;
+    [Tooltip("Quanti secondi deve durare l'animazione prima di finire il gioco?")]
+    public float tempoDiAttesaAnimazione = 2f;
+
     [Header("Eventi Fine Gioco")]
     [Tooltip("Cosa succede se il gatto dorme e TUTTI i task sono finiti?")]
     public UnityEvent azioniVittoria;
@@ -12,35 +19,54 @@ public class BedInteraction : Interactable
 
     protected override void EseguiInterazione()
     {
-        // Non si può premere due volte
         puoInteragire = false;
 
-        Debug.Log("Il gatto si mette a dormire... Controllo i task!");
+        // --- 1. FERMIAMO SUBITO IL TIMER! ---
+        if (GameTimer.Instance != null)
+        {
+            GameTimer.Instance.FermaTimer();
+        }
+
+        Debug.Log("Il gatto si mette a dormire...");
+
+        // --- 2. FACCIAMO PARTIRE L'ANIMAZIONE ---
+        if (gattoAnimator != null)
+        {
+            gattoAnimator.SetBool("isSleeping", true);
+        }
+
+        // --- 3. ASPETTIAMO PRIMA DI DARE IL RISULTATO ---
+        StartCoroutine(AspettaEControllaVittoria());
+    }
+
+    private IEnumerator AspettaEControllaVittoria()
+    {
+        // Aspetta che il gatto dorma un po'
+        yield return new WaitForSeconds(tempoDiAttesaAnimazione);
+
+        // Ora facciamo i controlli
+        Debug.Log("Controllo i task!");
 
         if (TaskManager.Instance != null)
         {
-            // Il letto chiede al TaskManager: "Ha fatto tutto?"
             if (TaskManager.Instance.ControllaSeTuttoFinito())
             {
                 Debug.Log("VITTORIA! Giornata completata!");
 
-                // Se vuoi, puoi chiamare direttamente il GameManager qui:
                 if (GameManager.Instance != null) GameManager.Instance.VittoriaGioco();
 
-                // Chiama anche gli eventi se vuoi accendere UI ecc.
                 azioniVittoria?.Invoke();
             }
             else
             {
                 Debug.Log("SCONFITTA! Manca qualcosa!");
 
+                azioniSconfitta?.Invoke();
+
                 if (GameManager.Instance != null)
                 {
-                    // Usa il tuo metodo GameOver personalizzato
                     GameManager.Instance.GameOver("Sei andato a letto senza finire i tuoi doveri da gatto!");
                 }
-
-                azioniSconfitta?.Invoke();
             }
         }
     }

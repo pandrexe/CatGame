@@ -14,7 +14,7 @@ public class GameTimer : MonoBehaviour
     public TextMeshProUGUI testoTimerUI;
 
     [Tooltip("Il testo che appare quando prendi il bonus (es. +5)")]
-    public TextMeshProUGUI testoBonusUI; // <-- NUOVO RIFERIMENTO
+    public TextMeshProUGUI testoBonusUI;
 
     private float tempoRimanente;
     private bool timerAttivo = false;
@@ -30,7 +30,6 @@ public class GameTimer : MonoBehaviour
         tempoRimanente = tempoMassimoSecondi;
         timerAttivo = true;
 
-        // Assicuriamoci che il testo bonus sia invisibile all'inizio della run
         if (testoBonusUI != null)
         {
             testoBonusUI.gameObject.SetActive(false);
@@ -65,10 +64,8 @@ public class GameTimer : MonoBehaviour
         tempoRimanente += secondiExtra;
         Debug.Log($"+{secondiExtra} sec! Nuovo tempo: {OttieniTempoFormattato()}");
 
-        // --- ATTIVAZIONE GRAFICA DEL BONUS ---
         if (testoBonusUI != null)
         {
-            // Se c'è già un'animazione in corso (es. fa due task velocissimi), la fermiamo per farla ripartire
             if (animazioneBonusCorrente != null)
             {
                 StopCoroutine(animazioneBonusCorrente);
@@ -79,33 +76,27 @@ public class GameTimer : MonoBehaviour
 
     private IEnumerator MostraTestoBonus(float secondi)
     {
-        // 1. Scrive il testo (es. "+5") e lo accende
         testoBonusUI.text = $"+{secondi}";
         testoBonusUI.gameObject.SetActive(true);
 
-        // 2. Assicura che l'opacità (Alpha) sia al 100%
         Color coloreTesto = testoBonusUI.color;
         coloreTesto.a = 1f;
         testoBonusUI.color = coloreTesto;
 
-        // 3. Aspetta 1 secondo lasciandolo ben visibile
         yield return new WaitForSeconds(1f);
 
-        // 4. Sfuma verso il trasparente per mezzo secondo
         float durataSfumo = 0.5f;
         float timerSfumo = 0f;
 
         while (timerSfumo < durataSfumo)
         {
             timerSfumo += Time.deltaTime;
-            // Mathf.Lerp abbassa gradualmente il valore da 1 (visibile) a 0 (invisibile)
             coloreTesto.a = Mathf.Lerp(1f, 0f, timerSfumo / durataSfumo);
             testoBonusUI.color = coloreTesto;
 
-            yield return null; // Aspetta il frame successivo
+            yield return null;
         }
 
-        // 5. Lo spegne del tutto fino al prossimo bonus
         testoBonusUI.gameObject.SetActive(false);
     }
 
@@ -122,5 +113,12 @@ public class GameTimer : MonoBehaviour
         int minuti = Mathf.FloorToInt(tempoRimanente / 60);
         int secondi = Mathf.FloorToInt(tempoRimanente % 60);
         return string.Format("{0:00}:{1:00}", minuti, secondi);
+    }
+
+    // --- NUOVA FUNZIONE PER BLOCCARE IL TIMER ---
+    public void FermaTimer()
+    {
+        timerAttivo = false;
+        Debug.Log("Timer bloccato al tempo: " + OttieniTempoFormattato());
     }
 }
