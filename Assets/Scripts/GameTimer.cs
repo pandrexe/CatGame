@@ -8,6 +8,7 @@ public class GameTimer : MonoBehaviour
 
     [Header("Impostazioni Tempo")]
     public float tempoMassimoSecondi = 300f;
+    private float tempoGiocato = 0f;
 
     [Header("Interfaccia Grafica")]
     [Tooltip("Il testo principale del Timer (es. 05:00)")]
@@ -41,6 +42,7 @@ public class GameTimer : MonoBehaviour
         if (timerAttivo)
         {
             tempoRimanente -= Time.deltaTime;
+            tempoGiocato += Time.deltaTime;
 
             if (testoTimerUI != null)
             {
@@ -120,5 +122,12 @@ public class GameTimer : MonoBehaviour
     {
         timerAttivo = false;
         Debug.Log("Timer bloccato al tempo: " + OttieniTempoFormattato());
+    }
+
+    public string OttieniTempoGiocatoFormattato()
+    {
+        int minuti = Mathf.FloorToInt(tempoGiocato / 60);
+        int secondi = Mathf.FloorToInt(tempoGiocato % 60);
+        return string.Format("{0:00}:{1:00}", minuti, secondi);
     }
 }

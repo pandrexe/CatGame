@@ -134,23 +134,42 @@ public class GameManager : MonoBehaviour
         GameOver("Task fallito! Ricominci da capo.");
     }
 
-    public void GameOver(string motivazione) // Reso public per poter essere chiamato dal GameTimer
+    public void GameOver(string motivazione)
     {
         Debug.Log($"GAME OVER: {motivazione}");
 
         inMinigioco = false;
         taskAttivo = null;
-        Time.timeScale = 1f;
 
-        viteAttuali = viteMassime;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (EndGameUI.Instance != null)
+        {
+            // ORA I CONTROLLI SONO SEPARATI!
+            if (motivazione == "TEMPO SCADUTO!")
+            {
+                EndGameUI.Instance.MostraTempoScaduto();
+            }
+            else if (motivazione == "Hai finito le tue 7 vite!")
+            {
+                EndGameUI.Instance.MostraViteFinite();
+            }
+            else if (motivazione == "Sei andato a letto senza finire i tuoi doveri da gatto!")
+            {
+                string mancanti = TasksUI.Instance != null ? TasksUI.Instance.OttieniListaMancanti() : "Task sconosciuti";
+                EndGameUI.Instance.MostraTaskMancanti(mancanti);
+            }
+        }
     }
 
     public void VittoriaGioco()
     {
         inMinigioco = false;
         Debug.Log("HAI COMPLETATO TUTTI I TASK! VITTORIA!");
-        // SceneManager.LoadScene("ScenaVittoria");
+
+        if (EndGameUI.Instance != null)
+        {
+            string tempo = GameTimer.Instance != null ? GameTimer.Instance.OttieniTempoGiocatoFormattato() : "00:00";
+            EndGameUI.Instance.MostraVittoria(tempo);
+        }
     }
 
 }

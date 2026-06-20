@@ -203,4 +203,19 @@ public class TasksUI : MonoBehaviour
                 return nomeEnum;
         }
     }
+
+    public string OttieniListaMancanti()
+    {
+        string mancanti = "";
+        foreach (TaskType tipo in taskDaFare)
+        {
+            if (!taskCompletati.Contains(tipo))
+            {
+                mancanti += $"- {FormattaNomeTask(tipo)}\n";
+            }
+        }
+        return mancanti;
+    }
+
+
 }
