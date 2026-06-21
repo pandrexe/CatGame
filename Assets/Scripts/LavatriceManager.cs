@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class LavatriceTask : MonoBehaviour // Cambiato: ora è MonoBehaviour normale!
+public class LavatriceTask : MonoBehaviour
 {
     [Header("Riferimenti Lavatrice")]
     public SpawnerBolle spawnerBolle;
@@ -15,39 +15,69 @@ public class LavatriceTask : MonoBehaviour // Cambiato: ora è MonoBehaviour norm
 
     private bool giaSpenta = false;
 
-    void Start() // Diventa un normale Start
+    void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // MODIFICA: Visto che lo script è sul figlio, cerchiamo il SpriteRenderer nel PADRE!
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
+
         audioSource = GetComponent<AudioSource>();
 
         if (suonoLavatriceAccesa != null)
         {
             audioSource.clip = suonoLavatriceAccesa;
             audioSource.loop = true;
-            audioSource.Play();
         }
     }
 
-    // Questa funzione verrà chiamata DIRETTAMENTE dalle "Azioni Alla Vittoria" nell'Inspector!
+    void OnEnable()
+    {
+        if (giaSpenta) return;
+
+        if (audioSource != null && suonoLavatriceAccesa != null)
+        {
+            audioSource.Play();
+        }
+
+        if (spawnerBolle != null)
+        {
+            spawnerBolle.enabled = true;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            return;
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
+        if (spawnerBolle != null)
+        {
+            spawnerBolle.enabled = false;
+        }
+    }
+
     public void SpegniLavatrice()
     {
         if (giaSpenta) return;
 
         giaSpenta = true;
 
-        // 1. BLOCCA LE BOLLE
         if (spawnerBolle != null)
         {
             spawnerBolle.enabled = false;
         }
 
-        // 2. CAMBIA LA GRAFICA
         if (spriteRenderer != null && spriteLavatriceSpenta != null)
         {
             spriteRenderer.sprite = spriteLavatriceSpenta;
         }
 
-        // 3. GESTISCI L'AUDIO
         if (audioSource != null)
         {
             audioSource.Stop();
@@ -57,6 +87,6 @@ public class LavatriceTask : MonoBehaviour // Cambiato: ora è MonoBehaviour norm
             }
         }
 
-        Debug.Log("Lavatrice Spenta con successo tramite UnityEvent!");
+        Debug.Log("Lavatrice Figlia spenta con successo!");
     }
 }
