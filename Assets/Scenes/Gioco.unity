@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a51b964c6ab443090568cb20b7d0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WheelTask
-  taskManager: {fileID: 96746358}
+  taskManager: {fileID: 1901713678}
   bulloni:
   - {fileID: 1191677731}
   - {fileID: 521601529}
@@ -20999,7 +20999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2bb5ed727adbc408aad2dd94403192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
-  tempoMassimoSecondi: 90
+  tempoMassimoSecondi: 60
   testoTimerUI: {fileID: 1502608276}
   testoBonusUI: {fileID: 1699407938}
 --- !u!1 &1237933020

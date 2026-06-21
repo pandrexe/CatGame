@@ -1,17 +1,17 @@
 using UnityEngine;
 using TMPro;
-using System.Collections; // Serve per le Coroutine
+using System.Collections;
 
 public class GameTimer : MonoBehaviour
 {
     public static GameTimer Instance;
 
     [Header("Impostazioni Tempo")]
-    public float tempoMassimoSecondi = 300f;
+    public float tempoMassimoSecondi = 60f; // Impostato di base a 60 secondi
     private float tempoGiocato = 0f;
 
     [Header("Interfaccia Grafica")]
-    [Tooltip("Il testo principale del Timer (es. 05:00)")]
+    [Tooltip("Il testo principale del Timer (es. 60:00)")]
     public TextMeshProUGUI testoTimerUI;
 
     [Tooltip("Il testo che appare quando prendi il bonus (es. +5)")]
@@ -110,24 +110,26 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    // --- MAGIA QUI: FORMATO SECONDI:CENTESIMI ---
     public string OttieniTempoFormattato()
     {
-        int minuti = Mathf.FloorToInt(tempoRimanente / 60);
-        int secondi = Mathf.FloorToInt(tempoRimanente % 60);
-        return string.Format("{0:00}:{1:00}", minuti, secondi);
+        int secondi = Mathf.FloorToInt(tempoRimanente);
+        // Prende la parte decimale e la moltiplica per 100 per avere i centesimi
+        int centesimi = Mathf.FloorToInt((tempoRimanente % 1) * 100);
+        return string.Format("{0:00}:{1:00}", secondi, centesimi);
     }
 
-    // --- NUOVA FUNZIONE PER BLOCCARE IL TIMER ---
     public void FermaTimer()
     {
         timerAttivo = false;
         Debug.Log("Timer bloccato al tempo: " + OttieniTempoFormattato());
     }
 
+    // Aggiorniamo anche il formato del tempo giocato per la schermata di vittoria
     public string OttieniTempoGiocatoFormattato()
     {
-        int minuti = Mathf.FloorToInt(tempoGiocato / 60);
-        int secondi = Mathf.FloorToInt(tempoGiocato % 60);
-        return string.Format("{0:00}:{1:00}", minuti, secondi);
+        int secondi = Mathf.FloorToInt(tempoGiocato);
+        int centesimi = Mathf.FloorToInt((tempoGiocato % 1) * 100);
+        return string.Format("{0:00}:{1:00}", secondi, centesimi);
     }
 }

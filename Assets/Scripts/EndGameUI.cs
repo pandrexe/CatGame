@@ -78,8 +78,13 @@ public class EndGameUI : MonoBehaviour
     {
         Time.timeScale = 0f;
         FermaMusicaESuonaJingle(jingleVittoria);
-        // Mantenuta la tua formattazione esatta!
-        if (testoTempoImpiegato != null) testoTempoImpiegato.text = $"{tempo} MINUTES!";
+
+        // --- LA MAGIA ESTETICA ---
+        // Il GameTimer ci manda "54:25". Noi sostituiamo i due punti con un punto
+        // così diventa un bellissimo "54.25 SECONDS!"
+        string tempoCentesimi = tempo.Replace(":", ".");
+
+        if (testoTempoImpiegato != null) testoTempoImpiegato.text = $"{tempoCentesimi} SECONDS!";
         if (pannelloVittoria) pannelloVittoria.SetActive(true);
     }
 
