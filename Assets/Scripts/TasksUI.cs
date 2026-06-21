@@ -150,54 +150,54 @@ public class TasksUI : MonoBehaviour
         {
             case "InstallaVirus":
             case "InstallVirus":
-                return "Install the virus on the PC";
+                return "Become an hacker";
 
             case "RovinaColazione":
             case "RuinBreakfast":
             case "SpoilBreakfast":
-                return "Ruin the breakfast";
+                return "Ruin his breakfast";
 
             case "SrotolaCartaIgienica":
             case "UnrollToiletPaper":
-                return "Unroll the toilet paper";
+                return "Give carte blanche";
 
             case "GraffiaDivano":
             case "ScratchSofa":
             case "ScratchCouch":
-                return "Scratch the sofa";
+                return "Get a manicure";
 
             case "AbbattiBicchiere":
             case "KnockOverGlass":
             case "BreakGlass":
-                return "Knock over the glass";
+                return "Test the law of gravity";
 
             case "SuonaPianoforte":
             case "PlayPiano":
-                return "Play the piano scale";
+                return "Learn an instrument";
 
             case "FaiCanestro":
             case "MakeBasket":
-                return "Make a basket";
+                return "Hit a three pointer";
 
             case "ButtaSpazzatura":
             case "DumpTrash":
             case "TrashTask":
-                return "Knock over the trash bin";
+                return "Dumpster dive";
 
             case "TogliRuota":
             case "RemoveWheel":
             case "WheelTask":
-                return "Remove the car bolts";
+                return "Do a pit-stop";
 
             case "RubaCibo":
             case "StealFood":
             case "SardineTask":
-                return "Steal the sardine";
+                return "Snatch a forbidden snack";
 
             case "VaiADormire":
             case "GoToSleep":
             case "Sleep":
-                return "Go to sleep";
+                return "Go to sleep!";
 
             default:
                 return nomeEnum;

@@ -53,20 +53,12 @@ public class PitchforkEnemy : MonoBehaviour
         if (gatto == null || Time.timeScale == 0)
             return;
 
-        // --- LA MAGIA: CONGELAMENTO DURANTE I MINIGIOCHI ---
+        // --- LA MAGIA: PAUSA DURANTE I MINIGIOCHI ---
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
         {
-            // 1. Fermiamo qualsiasi attacco in corso (se stava scendendo o tremando)
-            StopAllCoroutines();
-            staAttaccando = false;
-            staTornando = false;
-            staTremando = false;
-
-            // 2. Mettiamo in muto gli audio
-            if (audioSourceMovimento != null && audioSourceMovimento.isPlaying) audioSourceMovimento.Stop();
-            if (audioSourceAttacco != null && audioSourceAttacco.isPlaying) audioSourceAttacco.Stop();
-
-            // 3. Blocchiamo l'Update qui. La forca fluttuerà immobile finché non finisci il minigioco!
+            // Usciamo semplicemente dall'Update!
+            // NON spegniamo l'audio e NON stoppiamo le Coroutine. 
+            // La forca si frizza, l'audio stridente continua.
             return;
         }
 
@@ -104,8 +96,12 @@ public class PitchforkEnemy : MonoBehaviour
         Vector3 posOriginale = transform.position;
         float timer = 0f;
 
+        // FASE 1: TREMOLIO
         while (timer < tempoDiAttesa)
         {
+            // Se entri in un minigioco mentre trema, frizza il timer e il tremolio!
+            if (GameManager.Instance != null && GameManager.Instance.inMinigioco) { yield return null; continue; }
+
             transform.position = posOriginale + (Vector3)Random.insideUnitCircle * shakeAmount;
             timer += Time.deltaTime;
             yield return null;
@@ -120,18 +116,37 @@ public class PitchforkEnemy : MonoBehaviour
             audioSourceAttacco.Play();
         }
 
+        // FASE 2: ATTACCO IN PICCHIATA
         while (transform.position.y > yAttacco)
         {
+            // Se entri in un minigioco mentre cade, resta a mezz'aria!
+            if (GameManager.Instance != null && GameManager.Instance.inMinigioco) { yield return null; continue; }
+
             transform.position += Vector3.down * diveSpeed * Time.deltaTime;
             yield return null;
         }
 
         staAttaccando = false;
-        yield return new WaitForSeconds(0.5f);
+
+        // FASE 3: PAUSA A TERRA
+        float waitTimer = 0f;
+        while (waitTimer < 0.5f)
+        {
+            // Se entri in un minigioco mentre è conficcata a terra, ferma il tempo di attesa
+            if (GameManager.Instance != null && GameManager.Instance.inMinigioco) { yield return null; continue; }
+
+            waitTimer += Time.deltaTime;
+            yield return null;
+        }
+
         staTornando = true;
 
+        // FASE 4: RITORNO AL SOFFITTO
         while (transform.position.y < startY)
         {
+            // Se entri in un minigioco mentre risale, fermati lì!
+            if (GameManager.Instance != null && GameManager.Instance.inMinigioco) { yield return null; continue; }
+
             transform.position += Vector3.up * returnSpeed * Time.deltaTime;
             yield return null;
         }

@@ -31,11 +31,10 @@ public class RoombaEnemy : MonoBehaviour
 
     void OnEnable()
     {
-        // Se il trigger della stanza prova a riaccendermi ma io sono stato battuto, mi rispengo all'istante!
         if (eMortoDefinitivamente)
         {
             this.enabled = false;
-            return; // Blocca tutto
+            return;
         }
 
         if (audioSource != null && !audioSource.isPlaying)
@@ -46,17 +45,19 @@ public class RoombaEnemy : MonoBehaviour
 
     void Update()
     {
+        // --- IL CONGELAMENTO DURANTE I MINIGIOCHI (Solo Movimento) ---
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            // Continuiamo ad aggiornare il volume così senti il ronzio!
+            VolumeChanger();
+            return;
+        }
+
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
 
         if (isCatOnTop)
         {
-            if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
-            {
-                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-                VolumeChanger();
-                return;
-            }
-
             if (isGrounded)
             {
                 moveTimer -= Time.deltaTime;
@@ -118,6 +119,11 @@ public class RoombaEnemy : MonoBehaviour
     {
         if (!this.enabled) return;
 
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            return;
+        }
+
         if (collision.transform == target)
         {
             Vector2 contactNormal = collision.GetContact(0).normal;
@@ -126,13 +132,10 @@ public class RoombaEnemy : MonoBehaviour
             {
                 GameManager.Instance.PerdiVita();
 
-                if (GameManager.Instance != null && !GameManager.Instance.inMinigioco)
+                PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
+                if (scriptGatto != null)
                 {
-                    PlayerMovement scriptGatto = collision.gameObject.GetComponent<PlayerMovement>();
-                    if (scriptGatto != null)
-                    {
-                        scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, 0.5f);
-                    }
+                    scriptGatto.SubisciKnockback(transform, distanzaTeletrasporto, 0.5f);
                 }
             }
             else
@@ -147,11 +150,8 @@ public class RoombaEnemy : MonoBehaviour
     {
         if (audioSource == null || target == null) return;
 
-        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
-        {
-            audioSource.volume = 0f;
-            return;
-        }
+        // Ho rimosso l'if che azzerava il volume nel minigioco!
+        // Ora calcola sempre la distanza, che tu stia graffiando il divano o no.
 
         float distance = Vector2.Distance(transform.position, target.position);
         if (distance < soundDistance && distance > 0)
@@ -164,12 +164,11 @@ public class RoombaEnemy : MonoBehaviour
         }
     }
 
-    // --- LA FUNZIONE CHE CHIAMA IL TUO EVENTO ALLA VITTORIA ---
     public void SpegnimentoDefinitivo()
     {
-        eMortoDefinitivamente = true; // IL LUCCHETTO
+        eMortoDefinitivamente = true;
         this.enabled = false;
-        if (audioSource != null) audioSource.Stop(); // Assicuriamoci di spegnere subito il rumore
+        if (audioSource != null) audioSource.Stop();
         if (transform.parent != null) transform.parent.tag = "Platform";
     }
 }

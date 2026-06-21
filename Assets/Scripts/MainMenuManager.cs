@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
         {
             pannelloComandi.SetActive(false);
         }
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
     }
 
     public void IniziaGioco()

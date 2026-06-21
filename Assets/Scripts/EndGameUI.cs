@@ -94,12 +94,17 @@ public class EndGameUI : MonoBehaviour
     public void Ricomincia()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
 
-        // FONDAMENTALE: Distruggiamo il GameManager anche quando ricominciamo!
-        // Così la scena ne creerà uno completamente nuovo con l'audio che riparte da zero.
         if (GameManager.Instance != null)
         {
+            // 1. Cerchiamo l'AudioSource dentro al GameManager e lo stoppiamo PRIMA di distruggerlo
+            AudioSource audioGioco = GameManager.Instance.GetComponent<AudioSource>();
+            if (audioGioco != null) audioGioco.Stop();
+
+            // 2. Ora possiamo distruggerlo in sicurezza
             Destroy(GameManager.Instance.gameObject);
+            GameManager.Instance = null;
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -108,14 +113,19 @@ public class EndGameUI : MonoBehaviour
     public void TornaAlMenu()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
 
-        // FONDAMENTALE: Distruggiamo il GameManager prima di tornare al menu!
         if (GameManager.Instance != null)
         {
+            // 1. Zittiamo la musica del gioco PRIMA di cambiare scena
+            AudioSource audioGioco = GameManager.Instance.GetComponent<AudioSource>();
+            if (audioGioco != null) audioGioco.Stop();
+
+            // 2. Ora lo distruggiamo
             Destroy(GameManager.Instance.gameObject);
+            GameManager.Instance = null;
         }
 
-        // Mantenuto il nome corretto della tua scena!
         SceneManager.LoadScene("MainMenu");
     }
 }

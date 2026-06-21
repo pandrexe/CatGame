@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BirdEnemy : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class BirdEnemy : MonoBehaviour
     public bool spriteGuardaADestraAllInizio = false;
 
     private SpriteRenderer spriteRenderer;
-    private AudioSource audioSourceUccello; // <-- RIFERIMENTO ALL'AUDIO SOURCE
+    private AudioSource audioSourceUccello;
 
     // --- IL SEGRETO DELLO SPAWN ---
     private Vector3 spawnPoint;
@@ -30,7 +31,7 @@ public class BirdEnemy : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSourceUccello = GetComponent<AudioSource>(); // <-- PRENDIAMO L'AUDIO SOURCE
+        audioSourceUccello = GetComponent<AudioSource>();
 
         spawnPoint = transform.position;
     }
@@ -44,7 +45,6 @@ public class BirdEnemy : MonoBehaviour
 
         Debug.Log($"[BirdEnemy] Gatto entrato nel corridoio. Uccello resettato allo Spawn Point: {spawnPoint}");
 
-        // Fai partire il suono appena entri!
         if (audioSourceUccello != null)
         {
             audioSourceUccello.Play();
@@ -54,7 +54,6 @@ public class BirdEnemy : MonoBehaviour
     // --- QUESTO SCATTA OGNI VOLTA CHE IL GATTO ESCE DALLA STANZA ---
     void OnDisable()
     {
-        // Ferma il suono quando esci!
         if (audioSourceUccello != null)
         {
             audioSourceUccello.Stop();
@@ -63,6 +62,14 @@ public class BirdEnemy : MonoBehaviour
 
     void Update()
     {
+        // --- IL CONGELAMENTO DURANTE I MINIGIOCHI (Solo Movimento) ---
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            // Blocchiamo l'Update qui: l'uccello si ferma immobile nell'esatto punto in cui si trova,
+            // il timer dell'onda non avanza, ma l'audio continua a cantare in sottofondo!
+            return;
+        }
+
         float nuovaX = transform.position.x + (direzioneOrizzontale * velocitaOrizzontale * Time.deltaTime);
 
         if (limiteDestro != null && nuovaX >= limiteDestro.position.x)

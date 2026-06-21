@@ -20,8 +20,12 @@ public class ScratchSofaTask : MonoBehaviour
     [Tooltip("Quanti click totali servono per passare a Distrutto e vincere?")]
     public int clickPerDistruzione = 6;
 
-    [Header("Audio")]
-    public AudioClip suonoGraffio;
+    // --- NUOVI SLOT AUDIO SEPARATI ---
+    [Header("Audio Graffi")]
+    [Tooltip("Suono per quando graffi con la zampa SINISTRA")]
+    public AudioClip suonoGraffioSinistro;
+    [Tooltip("Suono per quando graffi con la zampa DESTRA")]
+    public AudioClip suonoGraffioDestro;
 
     private AudioSource audioSource;
     private bool taskFinito = false;
@@ -74,7 +78,8 @@ public class ScratchSofaTask : MonoBehaviour
                 Vector2 posZampaSx = MinigameCursor.Instance.zampaSx.position;
                 if (colliderDivano != null && colliderDivano.OverlapPoint(posZampaSx))
                 {
-                    EseguiGraffio();
+                    // Passiamo il suono sinistro!
+                    EseguiGraffio(suonoGraffioSinistro);
                     prossimoTastoAtteso = 1;
                     ImpostaVisibilitaZampe(false, true);
                 }
@@ -88,7 +93,8 @@ public class ScratchSofaTask : MonoBehaviour
                 Vector2 posZampaDx = MinigameCursor.Instance.zampaDx.position;
                 if (colliderDivano != null && colliderDivano.OverlapPoint(posZampaDx))
                 {
-                    EseguiGraffio();
+                    // Passiamo il suono destro!
+                    EseguiGraffio(suonoGraffioDestro);
                     prossimoTastoAtteso = 0;
                     ImpostaVisibilitaZampe(true, false);
                 }
@@ -96,11 +102,12 @@ public class ScratchSofaTask : MonoBehaviour
         }
     }
 
-    private void EseguiGraffio()
+    // Ora riceve la clip specifica a seconda di chi ha chiamato la funzione
+    private void EseguiGraffio(AudioClip clipDaRiprodurre)
     {
-        if (suonoGraffio != null && audioSource != null)
+        if (clipDaRiprodurre != null && audioSource != null)
         {
-            audioSource.PlayOneShot(suonoGraffio);
+            audioSource.PlayOneShot(clipDaRiprodurre);
         }
 
         graffiAttuali++;
