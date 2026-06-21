@@ -2525,9 +2525,10 @@ MonoBehaviour:
   testoTempoImpiegato: {fileID: 1439721297}
   testoListaMancanti: {fileID: 1630045776}
   musicaDiSottofondo: {fileID: 1720357039}
+  audioPadroneCheRussa: {fileID: 221391824}
   audioJingleFinali: {fileID: 166754086}
   jingleVittoria: {fileID: 8300000, guid: 7111341218937b04cb3d0203bb84265e, type: 3}
-  jingleTempoScaduto: {fileID: 8300000, guid: 8b5d2a5d75c9534469358e61158a8424, type: 3}
+  jingleTempoScaduto: {fileID: 8300000, guid: ead320de085c9a94d976a9ebf1e99e09, type: 3}
   jingleViteFinite: {fileID: 8300000, guid: 8b5d2a5d75c9534469358e61158a8424, type: 3}
   jingleTaskMancanti: {fileID: 8300000, guid: 8b5d2a5d75c9534469358e61158a8424, type: 3}
 --- !u!82 &166754086
@@ -20999,7 +21000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2bb5ed727adbc408aad2dd94403192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
-  tempoMassimoSecondi: 60
+  tempoMassimoSecondi: 5
   testoTimerUI: {fileID: 1502608276}
   testoBonusUI: {fileID: 1699407938}
 --- !u!1 &1237933020

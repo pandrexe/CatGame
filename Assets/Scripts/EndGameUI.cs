@@ -19,6 +19,11 @@ public class EndGameUI : MonoBehaviour
     [Header("Gestione Audio Finali")]
     [Tooltip("Trascina qui l'AudioSource che contiene la musica di background del gioco")]
     public AudioSource musicaDiSottofondo;
+
+    // --- LA NOVITÀ: L'AUDIO DEL PADRONE ---
+    [Tooltip("Trascina qui l'AudioSource dell'oggetto Padrone che russa")]
+    public AudioSource audioPadroneCheRussa;
+
     [Tooltip("Trascina qui un NUOVO AudioSource dedicato solo ai suoni di fine partita")]
     public AudioSource audioJingleFinali;
 
@@ -50,6 +55,12 @@ public class EndGameUI : MonoBehaviour
             musicaDiSottofondo.Stop();
         }
 
+        // --- AGGIUNTA: Zittiamo il padrone che russa per qualsiasi finale ---
+        if (audioPadroneCheRussa != null)
+        {
+            audioPadroneCheRussa.Stop();
+        }
+
         // 2. Facciamo suonare la clip corretta (ignorando il timeScale a 0)
         if (audioJingleFinali != null && jingle != null)
         {
@@ -79,9 +90,7 @@ public class EndGameUI : MonoBehaviour
         Time.timeScale = 0f;
         FermaMusicaESuonaJingle(jingleVittoria);
 
-        // --- LA MAGIA ESTETICA ---
-        // Il GameTimer ci manda "54:25". Noi sostituiamo i due punti con un punto
-        // così diventa un bellissimo "54.25 SECONDS!"
+        // Formattazione con il punto per i secondi (es: 54.25 SECONDS!)
         string tempoCentesimi = tempo.Replace(":", ".");
 
         if (testoTempoImpiegato != null) testoTempoImpiegato.text = $"{tempoCentesimi} SECONDS!";
@@ -103,11 +112,9 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            // 1. Cerchiamo l'AudioSource dentro al GameManager e lo stoppiamo PRIMA di distruggerlo
             AudioSource audioGioco = GameManager.Instance.GetComponent<AudioSource>();
             if (audioGioco != null) audioGioco.Stop();
 
-            // 2. Ora possiamo distruggerlo in sicurezza
             Destroy(GameManager.Instance.gameObject);
             GameManager.Instance = null;
         }
@@ -122,11 +129,9 @@ public class EndGameUI : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            // 1. Zittiamo la musica del gioco PRIMA di cambiare scena
             AudioSource audioGioco = GameManager.Instance.GetComponent<AudioSource>();
             if (audioGioco != null) audioGioco.Stop();
 
-            // 2. Ora lo distruggiamo
             Destroy(GameManager.Instance.gameObject);
             GameManager.Instance = null;
         }
