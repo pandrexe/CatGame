@@ -20,41 +20,51 @@ public class BirdEnemy : MonoBehaviour
     public bool spriteGuardaADestraAllInizio = false;
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSourceUccello; // <-- RIFERIMENTO ALL'AUDIO SOURCE
 
     // --- IL SEGRETO DELLO SPAWN ---
-    private Vector3 spawnPoint; // Memorizza la posizione X, Y, Z esatta di partenza
+    private Vector3 spawnPoint;
     private float direzioneOrizzontale = 1f;
     private float timerOnda = 0f;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSourceUccello = GetComponent<AudioSource>(); // <-- PRENDIAMO L'AUDIO SOURCE
 
-        // Salviamo una volta per tutte la posizione esatta in cui hai messo l'uccello nell'Editor
         spawnPoint = transform.position;
     }
 
     // --- QUESTO SCATTA OGNI VOLTA CHE IL GATTO ENTRA NELLA STANZA ---
     void OnEnable()
     {
-        // 1. Riportiamo l'uccello istantaneamente al suo punto di spawn originale
         transform.position = spawnPoint;
-
-        // 2. Resettiamo il timer dell'onda a 0, così riparte da centro onda senza scatti visivi
         timerOnda = 0f;
-
-        // 3. Facciamolo ripartire sempre verso destra (1f). Se preferisci sinistra metti -1f
         direzioneOrizzontale = 1f;
 
         Debug.Log($"[BirdEnemy] Gatto entrato nel corridoio. Uccello resettato allo Spawn Point: {spawnPoint}");
+
+        // Fai partire il suono appena entri!
+        if (audioSourceUccello != null)
+        {
+            audioSourceUccello.Play();
+        }
+    }
+
+    // --- QUESTO SCATTA OGNI VOLTA CHE IL GATTO ESCE DALLA STANZA ---
+    void OnDisable()
+    {
+        // Ferma il suono quando esci!
+        if (audioSourceUccello != null)
+        {
+            audioSourceUccello.Stop();
+        }
     }
 
     void Update()
     {
-        // 1. MOVIMENTO ORIZZONTALE DIRETTO
         float nuovaX = transform.position.x + (direzioneOrizzontale * velocitaOrizzontale * Time.deltaTime);
 
-        // Controllo dei limiti globali (immuni allo scale della stanza)
         if (limiteDestro != null && nuovaX >= limiteDestro.position.x)
         {
             nuovaX = limiteDestro.position.x;
@@ -68,11 +78,9 @@ public class BirdEnemy : MonoBehaviour
 
         GestisciFlipGrafica();
 
-        // 2. MOVIMENTO VERTICALE (Onda legata tassativamente all'altezza dello spawnPoint originale)
         timerOnda += Time.deltaTime * velocitaOndaY;
         float nuovoY = spawnPoint.y + Mathf.Sin(timerOnda) * ampiezzaOndaY;
 
-        // 3. APPLICAZIONE POSIZIONE
         transform.position = new Vector3(nuovaX, nuovoY, transform.position.z);
     }
 
@@ -94,11 +102,9 @@ public class BirdEnemy : MonoBehaviour
     {
         if (!enabled) return;
 
-        // --- IL BLOCCO MINIGIOCO PER L'UCCELLO ---
-        // Se sei nel minigioco delle tende, l'uccello non può farti danni!
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
         {
-            return; // Interrompe la funzione: niente danni, niente knockback!
+            return;
         }
 
         if (collision.CompareTag("Player"))

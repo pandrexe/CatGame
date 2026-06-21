@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public CinemachineCamera telecameraGatto;
     private CinemachineCamera telecameraMinigiocoAttuale;
 
+    [Header("Audio")]
+    [Tooltip("Trascina qui l'Audio Source con il verso del gatto quando viene colpito")]
+    public AudioSource audioDannoGatto; // <-- RIFERIMENTO AL SUONO DEL DANNO
+
     public bool inMinigioco = false;
     private InteractableTask taskAttivo;
 
@@ -55,8 +59,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
     public void IniziaMinigioco(CinemachineCamera telecameraMinigioco, InteractableTask taskCheHaIniziato)
     {
         inMinigioco = true;
@@ -82,10 +84,15 @@ public class GameManager : MonoBehaviour
     {
         if (gattoInvulnerabile) return;
 
+        // --- FACCIAMO PARTIRE IL SUONO DEL SOFFIO! ---
+        if (audioDannoGatto != null)
+        {
+            audioDannoGatto.Play();
+        }
+
         viteAttuali--;
         Debug.Log($"Vite rimaste: {viteAttuali}");
 
-        // --- NUOVA RIGA: Diciamo alla grafica dei cuori di aggiornarsi immediatamente!
         if (LivesUI.Instance != null)
         {
             LivesUI.Instance.AggiornaCuoriGrafica();
@@ -143,7 +150,6 @@ public class GameManager : MonoBehaviour
 
         if (EndGameUI.Instance != null)
         {
-            // ORA I CONTROLLI SONO SEPARATI!
             if (motivazione == "TEMPO SCADUTO!")
             {
                 EndGameUI.Instance.MostraTempoScaduto();
@@ -171,5 +177,4 @@ public class GameManager : MonoBehaviour
             EndGameUI.Instance.MostraVittoria(tempo);
         }
     }
-
 }

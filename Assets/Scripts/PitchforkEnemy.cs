@@ -13,13 +13,16 @@ public class PitchforkEnemy : MonoBehaviour
     public float distanzaTeletrasporto = 3f;
     public float durataStordimento = 0.5f;
 
+    [Header("Audio")]
+    public AudioSource audioSourceMovimento;
+    public AudioSource audioSourceAttacco;
+
     private Transform gatto;
     private float startY;
     private bool staAttaccando = false;
     private bool staTornando = false;
     private bool staTremando = false;
 
-    // --- IL LUCCHETTO ---
     private bool eMortoDefinitivamente = false;
 
     void Start()
@@ -31,13 +34,18 @@ public class PitchforkEnemy : MonoBehaviour
         }
     }
 
-    // --- INTERCETTA IL ROOM TRIGGER ---
     void OnEnable()
     {
         if (eMortoDefinitivamente)
         {
-            this.enabled = false; // Se è morto, si rifiuta di riaccendersi!
+            this.enabled = false;
         }
+    }
+
+    void OnDisable()
+    {
+        if (audioSourceMovimento != null) audioSourceMovimento.Stop();
+        if (audioSourceAttacco != null) audioSourceAttacco.Stop();
     }
 
     void Update()
@@ -45,16 +53,47 @@ public class PitchforkEnemy : MonoBehaviour
         if (gatto == null || Time.timeScale == 0)
             return;
 
+        // --- LA MAGIA: CONGELAMENTO DURANTE I MINIGIOCHI ---
+        if (GameManager.Instance != null && GameManager.Instance.inMinigioco)
+        {
+            // 1. Fermiamo qualsiasi attacco in corso (se stava scendendo o tremando)
+            StopAllCoroutines();
+            staAttaccando = false;
+            staTornando = false;
+            staTremando = false;
+
+            // 2. Mettiamo in muto gli audio
+            if (audioSourceMovimento != null && audioSourceMovimento.isPlaying) audioSourceMovimento.Stop();
+            if (audioSourceAttacco != null && audioSourceAttacco.isPlaying) audioSourceAttacco.Stop();
+
+            // 3. Blocchiamo l'Update qui. La forca fluttuerà immobile finché non finisci il minigioco!
+            return;
+        }
+
         float distanzaX = Mathf.Abs(transform.position.x - gatto.position.x);
 
-        if (!staAttaccando && !staTornando && !staTremando && distanzaX < activationRangeX)
+        bool staInseguendo = !staAttaccando && !staTornando && !staTremando && distanzaX < activationRangeX;
+
+        if (staInseguendo)
         {
             Vector3 targetPos = new Vector3(gatto.position.x, startY, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
 
+            if (audioSourceMovimento != null && !audioSourceMovimento.isPlaying)
+            {
+                audioSourceMovimento.Play();
+            }
+
             if (distanzaX < 0.2f)
             {
                 StartCoroutine(SequenzaAttacco());
+            }
+        }
+        else
+        {
+            if (audioSourceMovimento != null && audioSourceMovimento.isPlaying)
+            {
+                audioSourceMovimento.Stop();
             }
         }
     }
@@ -75,6 +114,11 @@ public class PitchforkEnemy : MonoBehaviour
         staTremando = false;
         staAttaccando = true;
         transform.position = posOriginale;
+
+        if (audioSourceAttacco != null)
+        {
+            audioSourceAttacco.Play();
+        }
 
         while (transform.position.y > yAttacco)
         {
@@ -114,10 +158,12 @@ public class PitchforkEnemy : MonoBehaviour
         }
     }
 
-    // --- LA FUNZIONE DA CHIAMARE ALLA VITTORIA ---
     public void SpegnimentoDefinitivo()
     {
         eMortoDefinitivamente = true;
         this.enabled = false;
+
+        if (audioSourceMovimento != null) audioSourceMovimento.Stop();
+        if (audioSourceAttacco != null) audioSourceAttacco.Stop();
     }
 }

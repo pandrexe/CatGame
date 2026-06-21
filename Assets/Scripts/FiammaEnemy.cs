@@ -8,6 +8,32 @@ public class FlameEnemy : MonoBehaviour
     [Tooltip("Per quanti secondi il gatto non può muoversi dopo essersi bruciato?")]
     public float durataStordimento = 0.5f;
 
+    private AudioSource audioSourceFiamma; // <-- RIFERIMENTO ALL'AUDIO SOURCE
+
+    void Awake()
+    {
+        // Prendiamo l'Audio Source attaccato a questo stesso oggetto
+        audioSourceFiamma = GetComponent<AudioSource>();
+    }
+
+    // --- ACCENSIONE SUONO ---
+    void OnEnable()
+    {
+        if (audioSourceFiamma != null)
+        {
+            audioSourceFiamma.Play();
+        }
+    }
+
+    // --- SPEGNIMENTO SUONO ---
+    void OnDisable()
+    {
+        if (audioSourceFiamma != null)
+        {
+            audioSourceFiamma.Stop();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Se lo script è spento, non fare nulla
