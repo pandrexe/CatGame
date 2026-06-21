@@ -6,8 +6,22 @@ public class SardineDragTask : MonoBehaviour
     public Transform sardina; 
     public float raggioPresa = 1.5f; 
 
+    [Header("Audio")]
+    [Tooltip("Suono viscido o di presa quando il gatto clicca sulla sardina")]
+    public AudioClip suonoPresaSardina;
+    [Tooltip("Suono di successo (miagolio o gnam) quando la sardina esce dallo schermo")]
+    public AudioClip suonoVittoriaSardina;
+
     private bool isDragging = false;
     private bool taskFinito = false;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        // Creiamo l'AudioSource in automatico
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     void Update()
     {
@@ -44,6 +58,12 @@ public class SardineDragTask : MonoBehaviour
             {
                 isDragging = true;
                 Debug.Log("Sardina: PRESA CON SUCCESSO! Sto trascinando...");
+
+                // --- AUDIO: Suona quando la afferri ---
+                if (suonoPresaSardina != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(suonoPresaSardina);
+                }
             }
             else
             {
@@ -66,7 +86,6 @@ public class SardineDragTask : MonoBehaviour
 
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(sardina.position);
 
-            // Controllo uscita (5% di tolleranza dai bordi per essere sicuri che la prenda ovunque)
             if (viewportPos.x <= 0.05f || viewportPos.x >= 0.95f || 
                 viewportPos.y <= 0.05f || viewportPos.y >= 0.95f)
             {
@@ -87,6 +106,12 @@ public class SardineDragTask : MonoBehaviour
         }
 
         Debug.Log("Sardina portata fuori! Task completato.");
+
+        // --- AUDIO: Suona il jingle di successo/miagolio ---
+        if (suonoVittoriaSardina != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(suonoVittoriaSardina);
+        }
 
         if (taskManager != null) 
         {

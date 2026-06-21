@@ -10,6 +10,10 @@ public class BreadTask : MonoBehaviour
     [Header("Riferimento Manager (Obbligatorio)")]
     public InteractableTask taskManager;
 
+    [Header("Audio")]
+    [Tooltip("Trascina qui il suono della spalmata (es. burro o lozione in loop)")]
+    public AudioClip suonoSpalmataDetersivo;
+
     private SpriteRenderer toastRenderer;
     private Texture2D textureDinamica;
     private Color32[] pixelOriginali;
@@ -17,6 +21,13 @@ public class BreadTask : MonoBehaviour
     private int totaliPixelDaColorare = 0;
     private int pixelColoratiCorrenti = 0;
     private bool taskFinito = false;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     void Start()
     {
@@ -48,19 +59,56 @@ public class BreadTask : MonoBehaviour
 
     void Update()
     {
-        if (taskFinito) return;
+        // --- BLOCCO DI SICUREZZA ---
+        // Se il task è finito, spegniamo subito l'audio ed usciamo per evitare che i click residui lo riaccendano
+        if (taskFinito) 
+        {
+            FermaSuonoSpalmata();
+            return;
+        }
+
+        // Gestione Audio fluida basata sul click del mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (MinigameCursor.Instance != null && MinigameCursor.Instance.puntaColtello != null)
+            {
+                if (toastRenderer.bounds.Contains(MinigameCursor.Instance.puntaColtello.position))
+                {
+                    RiproduciSuonoSpalmata();
+                }
+            }
+        }
 
         if (Input.GetMouseButton(0))
         {
             if (MinigameCursor.Instance != null && MinigameCursor.Instance.puntaColtello != null)
             {
-                PintaSuToast(MinigameCursor.Instance.puntaColtello.position);
+                Vector3 posColtello = MinigameCursor.Instance.puntaColtello.position;
+                PintaSuToast(posColtello);
+
+                // Se durante il trascinamento usciamo fuori dal toast, fermiamo l'audio
+                if (!toastRenderer.bounds.Contains(posColtello))
+                {
+                    FermaSuonoSpalmata();
+                }
+                else if (audioSource != null && !audioSource.isPlaying)
+                {
+                    // Se siamo rientrati nel toast e avevamo mollato il suono, facciamolo ripartire
+                    RiproduciSuonoSpalmata();
+                }
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            FermaSuonoSpalmata();
         }
     }
 
     private void PintaSuToast(Vector3 posizioneLama)
     {
+        if (taskFinito) return; // Ulteriore controllo per evitare calcoli a task chiuso
+
         Bounds limitiMondo = toastRenderer.bounds;
 
         float xNorm = Mathf.InverseLerp(limitiMondo.min.x, limitiMondo.max.x, posizioneLama.x);
@@ -109,9 +157,33 @@ public class BreadTask : MonoBehaviour
         }
     }
 
+    private void RiproduciSuonoSpalmata()
+    {
+        if (taskFinito) return; // Non riprodurre se abbiamo già vinto
+
+        if (suonoSpalmataDetersivo != null && audioSource != null)
+        {
+            audioSource.clip = suonoSpalmataDetersivo;
+            audioSource.loop = true; 
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+    }
+
+    private void FermaSuonoSpalmata()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
+
     private void FineTask()
     {
         taskFinito = true;
+        FermaSuonoSpalmata();
         
         if (MinigameCursor.Instance != null)
             MinigameCursor.Instance.ImpostaCursore(TipoCursore.Nessuno);

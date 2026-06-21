@@ -9,6 +9,10 @@ public class TrashBinTask : MonoBehaviour
     public Transform puntoUscita; 
     public InteractableTask taskManager; // Obbligatorio!
 
+    [Header("Audio")]
+    [Tooltip("Trascina qui il suono del sacco di plastica (es. plastic bag shake)")]
+    public AudioClip suonoSaccoLanciato;
+
     [Header("Parametri")]
     public float velocitaTrascinamento = 1.0f;
 
@@ -16,6 +20,14 @@ public class TrashBinTask : MonoBehaviour
     private bool staTrascinando = false;
     private Vector3 ultimaPosizioneMouse;
     private Vector3 posInizialeSacco;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        // Generiamo l'AudioSource in automatico sul GameObject
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     void Start()
     {
@@ -38,6 +50,12 @@ public class TrashBinTask : MonoBehaviour
             {
                 staTrascinando = true;
                 ultimaPosizioneMouse = mousePos;
+
+                // --- AGGIUNTA AUDIO: Il suono parte ESATTAMENTE quando il gatto afferra il sacco ---
+                if (suonoSaccoLanciato != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(suonoSaccoLanciato);
+                }
             }
         }
 

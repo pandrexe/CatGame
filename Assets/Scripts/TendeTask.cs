@@ -32,6 +32,8 @@ public class CurtainsTask : MonoBehaviour
     void Awake()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false; // Disattivato all'inizio per sicurezza
+        
         if (tendaSX_Minigioco != null) startXSX = tendaSX_Minigioco.transform.position.x;
         if (tendaDX_Minigioco != null) startXDX = tendaDX_Minigioco.transform.position.x;
     }
@@ -45,6 +47,9 @@ public class CurtainsTask : MonoBehaviour
         dxBloccata = false;
         taskFinito = false;
         tendaInTrascinamento = null;
+
+        // Ci assicuriamo che l'audio sia muto all'avvio
+        if (audioSource != null) audioSource.Stop();
     }
 
     void Update()
@@ -53,18 +58,20 @@ public class CurtainsTask : MonoBehaviour
 
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // 1. PRENDI LA TENDA
+        // 1. PRENDI LA TENDA E FAI PARTIRE IL SUONO
         if (Input.GetMouseButtonDown(0))
         {
             if (!sxBloccata && tendaSX_Minigioco != null && tendaSX_Minigioco.OverlapPoint(mouseWorldPos))
             {
                 tendaInTrascinamento = tendaSX_Minigioco.transform;
                 offsetX = tendaSX_Minigioco.transform.position.x - mouseWorldPos.x;
+                RiproduciSuonoScorrimento();
             }
             else if (!dxBloccata && tendaDX_Minigioco != null && tendaDX_Minigioco.OverlapPoint(mouseWorldPos))
             {
                 tendaInTrascinamento = tendaDX_Minigioco.transform;
                 offsetX = tendaDX_Minigioco.transform.position.x - mouseWorldPos.x;
+                RiproduciSuonoScorrimento();
             }
         }
 
@@ -87,17 +94,41 @@ public class CurtainsTask : MonoBehaviour
             tendaInTrascinamento.position = new Vector3(nuovaX, tendaInTrascinamento.position.y, tendaInTrascinamento.position.z);
         }
 
-        // 3. RILASCIA IL MOUSE E CONTROLLA LA VITTORIA
+        // 3. RILASCIA IL MOUSE, FERMA IL SUONO E CONTROLLA LA VITTORIA
         if (Input.GetMouseButtonUp(0) && tendaInTrascinamento != null)
         {
+            FermaSuonoScorrimento();
             ControllaVittoriaRilascio();
             tendaInTrascinamento = null;
         }
     }
 
+    // --- NUOVE FUNZIONI AUDIO ---
+
+    private void RiproduciSuonoScorrimento()
+    {
+        if (suonoScorrimentoTenda != null && audioSource != null)
+        {
+            audioSource.clip = suonoScorrimentoTenda;
+            audioSource.loop = true; // Il suono si ripete mentre trascini
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+    }
+
+    private void FermaSuonoScorrimento()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
+
     private void ControllaVittoriaRilascio()
     {
-        // Se la tenda viene rilasciata DENTRO al collider trigger, si blocca lì dov'è!
+        // Se la tenda viene rilasciata DENTRO al collider trigger, si blocca lÃ¬ dov'Ã¨!
         if (tendaInTrascinamento == tendaSX_Minigioco.transform && tendaSX_Minigioco.bounds.Intersects(zonaVittoriaSX.bounds))
         {
             BloccaTenda(true);
@@ -110,11 +141,6 @@ public class CurtainsTask : MonoBehaviour
 
     private void BloccaTenda(bool isSinistra)
     {
-        if (suonoScorrimentoTenda != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(suonoScorrimentoTenda);
-        }
-
         // Nessun teletrasporto (snap)! Semplicemente segnaliamo la tenda come bloccata.
         if (isSinistra)
         {

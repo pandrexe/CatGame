@@ -3363,7 +3363,7 @@ MonoBehaviour:
   tendaDX_Minigioco: {fileID: 2006266561}
   zonaVittoriaSX: {fileID: 620225657}
   zonaVittoriaDX: {fileID: 399246000}
-  suonoScorrimentoTenda: {fileID: 0}
+  suonoScorrimentoTenda: {fileID: 8300000, guid: 89977154e05ce4c459ce71eb674871b6, type: 3}
 --- !u!1 &221391820 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 605698267756280940, guid: 83572b0893f6cf3488a8a7bb7d6b6cd1, type: 3}
@@ -7741,7 +7741,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.559998, y: -0.006306052, z: -10}
+  m_LocalPosition: {x: 16.769348, y: -0.006306052, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19505,6 +19505,7 @@ MonoBehaviour:
   colliderSacco: {fileID: 822830358}
   puntoUscita: {fileID: 582443693}
   taskManager: {fileID: 95803521}
+  suonoSaccoLanciato: {fileID: 8300000, guid: 5de03bee0ce014c848f06a6952ba305e, type: 3}
   velocitaTrascinamento: 1
 --- !u!1 &1171322638
 GameObject:
@@ -22077,6 +22078,8 @@ MonoBehaviour:
   taskManager: {fileID: 1817701312}
   sardina: {fileID: 1186941090}
   raggioPresa: 1.5
+  suonoPresaSardina: {fileID: 8300000, guid: c4d6af809e5be46d8bf874df21a78961, type: 3}
+  suonoVittoriaSardina: {fileID: 8300000, guid: a86124d9539dc41a59426b887466b396, type: 3}
 --- !u!1 &1281079653
 GameObject:
   m_ObjectHideFlags: 0
@@ -24417,6 +24420,7 @@ MonoBehaviour:
   raggioPennello: 15
   percentualePerVincere: 0.85
   taskManager: {fileID: 1496442592}
+  suonoSpalmataDetersivo: {fileID: 8300000, guid: 9123c1dc928354db5a2f8b1fbad925a0, type: 3}
 --- !u!212 &1409177887
 SpriteRenderer:
   serializedVersion: 2
@@ -30455,6 +30459,7 @@ MonoBehaviour:
   colliderCarta: {fileID: 2014765013}
   puntoDistacco: {fileID: 2029725192}
   taskManager: {fileID: 2008112066}
+  suonoTiraCarta: {fileID: 8300000, guid: c3a75faae0fa44a4ba02e1752baee491, type: 3}
   velocitaTrascinamento: 1
 --- !u!1 &1797776387
 GameObject:

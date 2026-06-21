@@ -9,6 +9,10 @@ public class ToiletPaperTask : MonoBehaviour
     public Transform puntoDistacco;
     public InteractableTask taskManager; // Obbligatorio!
 
+    [Header("Audio")]
+    [Tooltip("Trascina qui il suono della carta igienica tirata (es. toilet paper pull)")]
+    public AudioClip suonoTiraCarta;
+
     [Header("Parametri")]
     public float velocitaTrascinamento = 1.0f;
 
@@ -19,6 +23,14 @@ public class ToiletPaperTask : MonoBehaviour
     private int prossimoTastoAtteso = 0;
     private int tastoInUso = -1;
     private bool zampeInizializzate = false;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        // Generiamo l'AudioSource in automatico sul GameObject
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
 
     void Update()
     {
@@ -33,6 +45,7 @@ public class ToiletPaperTask : MonoBehaviour
 
         if (!staTrascinando)
         {
+            // Click Zampa Sinistra (Click 0)
             if (Input.GetMouseButtonDown(0) && prossimoTastoAtteso == 0)
             {
                 if (MinigameCursor.Instance != null && MinigameCursor.Instance.zampaSx != null)
@@ -44,9 +57,13 @@ public class ToiletPaperTask : MonoBehaviour
                         tastoInUso = 0;
                         prossimoTastoAtteso = 1;
                         ultimaPosizioneMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                        // --- AUDIO: Riproduce il suono allo strattone della zampa SX ---
+                        RiproduciSuonoCarta();
                     }
                 }
             }
+            // Click Zampa Destra (Click 1)
             else if (Input.GetMouseButtonDown(1) && prossimoTastoAtteso == 1)
             {
                 if (MinigameCursor.Instance != null && MinigameCursor.Instance.zampaDx != null)
@@ -58,6 +75,9 @@ public class ToiletPaperTask : MonoBehaviour
                         tastoInUso = 1;
                         prossimoTastoAtteso = 0;
                         ultimaPosizioneMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                        // --- AUDIO: Riproduce il suono allo strattone della zampa DX ---
+                        RiproduciSuonoCarta();
                     }
                 }
             }
@@ -89,6 +109,15 @@ public class ToiletPaperTask : MonoBehaviour
             }
 
             ultimaPosizioneMouse = posizioneCorrenteMouse;
+        }
+    }
+
+    private void RiproduciSuonoCarta()
+    {
+        if (suonoTiraCarta != null && audioSource != null)
+        {
+            // Usiamo PlayOneShot così se il giocatore clicca velocissimo, i suoni sfumano l'uno nell'altro in modo naturale
+            audioSource.PlayOneShot(suonoTiraCarta);
         }
     }
 
