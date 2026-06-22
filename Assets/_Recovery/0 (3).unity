@@ -1899,7 +1899,7 @@ Transform:
   m_GameObject: {fileID: 118887960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.936, y: 0, z: 0}
+  m_LocalPosition: {x: -2.52, y: 0, z: 0}
   m_LocalScale: {x: 0.1080195, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5487,7 +5487,7 @@ Transform:
   m_GameObject: {fileID: 354664566}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24, y: 0.63952637, z: 0}
+  m_LocalPosition: {x: 24.98, y: 0.63952637, z: 0}
   m_LocalScale: {x: 18.59125, y: 2.4126, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8099,7 +8099,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.240112, y: -0.006306052, z: -10}
+  m_LocalPosition: {x: 18.32505, y: -0.006306052, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16443,7 +16443,7 @@ Transform:
   m_GameObject: {fileID: 981509010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.461498, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2630332, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19845,7 +19845,7 @@ Transform:
   m_GameObject: {fileID: 1166669157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3354981, y: -1.032959, z: 0}
+  m_LocalPosition: {x: -1.9194336, y: -1.032959, z: 0}
   m_LocalScale: {x: 4.0756, y: 4.0756, z: 4.0756}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19945,7 +19945,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.065420434, y: 0.24831288}
+  m_Offset: {x: -0.07572372, y: 0.25910485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -19955,7 +19955,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.17198148, y: 0.17311963}
+  m_Size: {x: 0.12058473, y: 0.09179032}
   m_EdgeRadius: 0
 --- !u!1 &1170122654
 GameObject:

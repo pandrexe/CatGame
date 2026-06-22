@@ -7,10 +7,10 @@ public class UnplugTask : MonoBehaviour
     public InteractableTask taskManager; // Obbligatorio!
 
     [Header("Riferimenti Spina")]
-    [Tooltip("Il Collider2D della spina (serve solo per poterla cliccare col mouse)")]
+    [Tooltip("Il Collider2D della spina (serve per poterla cliccare con la zampa)")]
     public Collider2D spinaCollider;
 
-    [Tooltip("Opzionale: Crea un oggetto vuoto FISGIO alla spina (es. sulla punta) e trascinalo qui per decidere il punto esatto che deve superare il traguardo. Se lo lasci vuoto, userà il centro della spina.")]
+    [Tooltip("Opzionale: Crea un oggetto vuoto FISSO alla spina (es. sulla punta) e trascinalo qui per decidere il punto esatto che deve superare il traguardo. Se lo lasci vuoto, userà il centro della spina.")]
     public Transform puntoSpina;
 
     [Header("Traguardo (Usa Transform)")]
@@ -18,6 +18,7 @@ public class UnplugTask : MonoBehaviour
     public Transform traguardoTransform;
 
     [Header("Audio")]
+    [Tooltip("Il suono della spina che viene estratta dalla presa")]
     public AudioClip suonoStacco;
 
     private AudioSource audioSource;
@@ -58,43 +59,48 @@ public class UnplugTask : MonoBehaviour
     {
         if (taskFinito) return;
 
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // 1. CLICK DEL MOUSE
-        if (Input.GetMouseButtonDown(0))
+        // --- SISTEMATO: Usiamo la ZAMPA personalizzata al posto del mouse di Windows ---
+        if (MinigameCursor.Instance != null && MinigameCursor.Instance.contenitoreSingola != null)
         {
-            if (spinaCollider != null && spinaCollider.OverlapPoint(mouseWorldPos))
+            // Prendiamo la posizione esatta della zampa nel mondo di gioco
+            Vector2 posZampa = MinigameCursor.Instance.contenitoreSingola.transform.position;
+
+            // 1. CLICK INIZIALE SULLA SPINA
+            if (Input.GetMouseButtonDown(0))
             {
-                staTrascinando = true;
-                offsetX = spinaCollider.transform.position.x - mouseWorldPos.x;
-            }
-        }
-
-        // 2. TRASCINAMENTO
-        if (staTrascinando && Input.GetMouseButton(0))
-        {
-            float nuovaX = mouseWorldPos.x + offsetX;
-
-            // Limite sinistro (non entra nel muro)
-            nuovaX = Mathf.Max(nuovaX, startX);
-
-            // Applichiamo il movimento bloccando Y e Z
-            spinaCollider.transform.position = new Vector3(nuovaX, fixedY, fixedZ);
-
-            // 3. --- NUOVO CONTROLLO MATEMATICO DEL TRAGUARDO ---
-            if (traguardoTransform != null)
-            {
-                // Se hai impostato un punto specifico della spina usa quello, altrimenti usa il centro del GameObject
-                float xAttualeSpina = (puntoSpina != null) ? puntoSpina.position.x : spinaCollider.transform.position.x;
-
-                // Se la X della spina ha superato (o è uguale) alla X del traguardo... VITTORIA!
-                if (xAttualeSpina >= traguardoTransform.position.x)
+                if (spinaCollider != null && spinaCollider.OverlapPoint(posZampa))
                 {
-                    StaccaSpina();
+                    staTrascinando = true;
+                    offsetX = spinaCollider.transform.position.x - posZampa.x;
+                }
+            }
+
+            // 2. TRASCINAMENTO CONTINUO
+            if (staTrascinando && Input.GetMouseButton(0))
+            {
+                float nuovaX = posZampa.x + offsetX;
+
+                // Limite sinistro (non fa incastrare la spina dentro al muro a sinistra)
+                nuovaX = Mathf.Max(nuovaX, startX);
+
+                // Applichiamo il movimento bloccando Y e Z (la spina si muove solo a destra)
+                spinaCollider.transform.position = new Vector3(nuovaX, fixedY, fixedZ);
+
+                // 3. CONTROLLO MATEMATICO DEL TRAGUARDO
+                if (traguardoTransform != null)
+                {
+                    float xAttualeSpina = (puntoSpina != null) ? puntoSpina.position.x : spinaCollider.transform.position.x;
+
+                    // Se la spina supera il traguardo... VITTORIA!
+                    if (xAttualeSpina >= traguardoTransform.position.x)
+                    {
+                        StaccaSpina();
+                    }
                 }
             }
         }
 
+        // Se rilasci il click, smetti di trascinare
         if (Input.GetMouseButtonUp(0))
         {
             staTrascinando = false;
@@ -105,8 +111,9 @@ public class UnplugTask : MonoBehaviour
     {
         taskFinito = true;
         staTrascinando = false;
-        Debug.Log("Spina staccata superando la linea del Transform!");
+        Debug.Log("Spina staccata con successo!");
 
+        // --- FA PARTIRE IL SUONO METALLICO/ELETTRICO DEL DISTACCO ---
         if (suonoStacco != null && audioSource != null)
         {
             audioSource.PlayOneShot(suonoStacco);
@@ -117,6 +124,7 @@ public class UnplugTask : MonoBehaviour
 
     private IEnumerator SequenzaVittoria()
     {
+        // Aspetta 1 secondo per goderti l'audio prima di chiudere il minigioco
         yield return new WaitForSeconds(1f);
 
         if (taskManager != null) taskManager.CompletaTask();
