@@ -3709,7 +3709,7 @@ MonoBehaviour:
   tendaDX_Minigioco: {fileID: 2006266561}
   zonaVittoriaSX: {fileID: 620225657}
   zonaVittoriaDX: {fileID: 399246000}
-  suonoScorrimentoTenda: {fileID: 8300000, guid: bec01442ae047234fb439d3fae98f06b, type: 3}
+  suonoScorrimentoTenda: {fileID: 8300000, guid: 89977154e05ce4c459ce71eb674871b6, type: 3}
 --- !u!1 &221391820 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 605698267756280940, guid: 83572b0893f6cf3488a8a7bb7d6b6cd1, type: 3}
@@ -29855,9 +29855,7 @@ MonoBehaviour:
   telecameraGatto: {fileID: 243880677}
   audioDannoGatto: {fileID: 1720357040}
   inMinigioco: 0
-  gattoInvulnerabile: 0
-  durataInvulnerabilita: 1.5
-  tempoUltimoDanno: -10
+  durataInvulnerabilita: 2
 --- !u!82 &1720357039
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40841,7 +40839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8284196560392861929, guid: 0276efb498c14284180619a5daa5e191, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8447432668383880750, guid: 0276efb498c14284180619a5daa5e191, type: 3}
       propertyPath: tipoDiTask

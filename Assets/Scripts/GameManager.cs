@@ -18,14 +18,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Audio")]
     [Tooltip("Trascina qui l'Audio Source con il verso del gatto quando viene colpito")]
-    public AudioSource audioDannoGatto; // <-- RIFERIMENTO AL SUONO DEL DANNO
+    public AudioSource audioDannoGatto;
 
     public bool inMinigioco = false;
     private InteractableTask taskAttivo;
 
-    private bool gattoInvulnerabile = false;
+    // --- MODIFICA: Resa PUBLIC per farla leggere al PlayerMovement ---
+    [HideInInspector] public bool gattoInvulnerabile = false;
     public float durataInvulnerabilita = 2f;
     private SpriteRenderer spriteGatto;
+
+    // --- NUOVA: Registra l'ora esatta del danno ---
+    [HideInInspector] public float tempoUltimoDanno = -10f;
 
     void Awake()
     {
@@ -82,9 +86,12 @@ public class GameManager : MonoBehaviour
 
     public void PerdiVita()
     {
+        // Se siamo già invulnerabili, blocca tutto all'istante
         if (gattoInvulnerabile) return;
 
-        // --- FACCIAMO PARTIRE IL SUONO DEL SOFFIO! ---
+        // --- SCOPPIO A: Salva il momento esatto in cui perdi la vita ---
+        tempoUltimoDanno = Time.time;
+
         if (audioDannoGatto != null)
         {
             audioDannoGatto.Play();

@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Se è stordito, forziamo la velocità a 0 (mantenendo quella verticale per la gravità)
         if (!puoMuoversi)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
@@ -105,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.timeScale == 0f) return;
         if (GameManager.Instance != null && GameManager.Instance.inMinigioco) return;
-        if (!puoMuoversi) return; // Blocca i comandi durante il volo!
+        if (!puoMuoversi) return;
 
         horizontalMovement = context.ReadValue<Vector2>().x;
         Flip();
@@ -241,6 +240,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void SubisciKnockback(Transform posizioneNemico, float distanzaSbalzo, float durataStun)
     {
+        // --- IL LUCCHETTO DI INVULNERABILITÀ TOTALE ---
+        // Se il GameManager dice che siamo invulnerabili, MA il tempo corrente è MAGGIORE
+        // di quando abbiamo preso il colpo iniziale, significa che è un secondo colpo di sbieco! Lo ignoriamo.
+        if (GameManager.Instance != null && GameManager.Instance.gattoInvulnerabile && Time.time > GameManager.Instance.tempoUltimoDanno)
+        {
+            return; // Blocca il knockback e lo stordimento!
+        }
+
         // 1. Applica lo stordimento usando la funzione che avevi già creato
         ApplicaStordimento(durataStun);
 
@@ -255,16 +262,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void ApplicaStordimento(float durata)
     {
-        // AZZERIAMO TUTTO ISTANTANEAMENTE
         horizontalMovement = 0f;
 
-        // --- MODIFICA: TOGLIE LA CORSA AL GATTO ---
         isRunning = false;
-        currentSpeed = walkSpeed; // Riporta la velocità ai valori base della camminata
+        currentSpeed = walkSpeed;
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-        // --- MODIFICA: AGGIORNA SUBITO L'ANIMATOR ---
         animator.SetBool("isMoving", false);
         animator.SetBool("isRunning", false);
 
