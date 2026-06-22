@@ -4455,7 +4455,7 @@ MonoBehaviour:
   testoInterazioneUI: {fileID: 0}
   spritesDaEvidenziare:
   - {fileID: 1629050133}
-  coloreHighlight: {r: 0.015686274, g: 1, b: 0.96600395, a: 1}
+  coloreHighlight: {r: 0.4801213, g: 0.5660378, b: 0, a: 1}
   tipoDiTask: 4
   telecameraDelMinigioco: {fileID: 66456470}
   scriptDelTask: {fileID: 1816924144}

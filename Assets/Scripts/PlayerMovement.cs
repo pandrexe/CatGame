@@ -39,16 +39,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.RegistraPlayer(this.gameObject); isRunning = false;
-                currentSpeed = walkSpeed;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RegistraPlayer(this.gameObject);
+            isRunning = false;
+            currentSpeed = walkSpeed;
 
-                if (animator == null) animator = GetComponent<Animator>();
-                if (rb == null) rb = GetComponent<Rigidbody2D>();
-                if (catAudio == null) catAudio = GetComponent<CatAudio>();
-                if (playerCollider == null) playerCollider = GetComponent<BoxCollider2D>();
-            }
+            if (animator == null) animator = GetComponent<Animator>();
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (catAudio == null) catAudio = GetComponent<CatAudio>();
+            if (playerCollider == null) playerCollider = GetComponent<BoxCollider2D>();
+        }
     }
 
     void Update()
@@ -256,10 +257,14 @@ public class PlayerMovement : MonoBehaviour
     {
         // AZZERIAMO TUTTO ISTANTANEAMENTE
         horizontalMovement = 0f;
+
+        // --- MODIFICA: TOGLIE LA CORSA AL GATTO ---
         isRunning = false;
+        currentSpeed = walkSpeed; // Riporta la velocità ai valori base della camminata
+
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-        // Fermiamo le animazioni
+        // --- MODIFICA: AGGIORNA SUBITO L'ANIMATOR ---
         animator.SetBool("isMoving", false);
         animator.SetBool("isRunning", false);
 
@@ -272,5 +277,4 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(durata);
         puoMuoversi = true;
     }
-
 }
