@@ -40653,6 +40653,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8970633547086719020, guid: 35ada60cb7783b54591169a42c82d6a3, type: 3}
+    - target: {fileID: 3523384416230088079, guid: 0276efb498c14284180619a5daa5e191, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3879370357952184012, guid: 0276efb498c14284180619a5daa5e191, type: 3}
       propertyPath: m_Size.y
       value: 0.08492696
